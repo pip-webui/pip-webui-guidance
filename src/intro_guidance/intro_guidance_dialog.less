@@ -1,0 +1,140 @@
+md-dialog.pip-guide-preview {
+  position: relative;
+  width: inherit !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+
+
+}
+
+.body {
+  overflow-x: hidden;
+}
+
+.pip-guide-preview {
+  color: #fff;
+
+  .pip-arrow-button, .pip-radio-button {
+    color: #fff !important;
+  }
+  .pip-radio-button {
+    margin: 6px;
+    height: 12px;
+    width: 12px;
+  }
+
+  .pip-guide-page{
+    height: ~"calc(100%  - 88px)";
+    overflow: auto;
+
+    .pip-text{
+      max-width: 50%;
+      @media(max-width: 768px){
+        max-width: ~"calc(100% - 32px)";
+      }
+    }
+  }
+
+  .pip-guide-page-footer {
+    position: fixed;
+    bottom: 0px;
+  }
+
+  .button-preview {
+    line-height: 48px;
+  }
+  button {
+    box-shadow: none !important;
+  }
+
+  .pip-button-got {
+    //font-family: @font-family-medium;
+    border: @divider-border;
+    border-color: #fff;
+    min-width: 88px;
+  }
+  .pip-button-got.md-raised {
+    border: none;
+  }
+
+  .pip-preview-content, .pip-preview-title {
+    margin: 0px;
+    text-align: center;
+  }
+
+  .pip-pic {
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  @media (min-width: 768px) {
+    pip-collage, .pip-pic {
+      height: 250px;
+      width: 250px;
+      margin-bottom: 32px;
+      .pip-collage-section {
+        height: 250px;
+        width: 250px;
+      }
+    }
+
+    .pip-preview-title {
+      font: @font-headline;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .pip-preview-content {
+      font: @font-title;
+      font-weight: 400;
+
+    }
+  }
+  @media (max-width: 768px) {
+    pip-collage, .pip-pic {
+      height: 200px;
+      width: 200px;
+
+      margin-bottom: 32px;
+      .pip-collage-section {
+        height: 200px;
+        width: 200px;
+        img {
+          margin-left: 0px;
+        }
+      }
+    }
+
+    .pip-preview-title {
+      font: @font-title;
+
+      margin-bottom: 16px;
+    }
+
+    .pip-preview-content {
+      font: @font-body1;
+    }
+  }
+  @media (max-width: 400px) {
+    pip-collage, .pip-pic {
+      height: 150px;
+      width: 150px;
+      .pip-collage-section {
+        height: 150px;
+        width: 150px;
+        img {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  opacity: 1;
+
+}

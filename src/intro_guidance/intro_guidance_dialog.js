@@ -1,0 +1,108 @@
+/**
+ * @file Guidance dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipReleaseIntroDialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
+
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'GUIDANCE_TITLE': 'What should you do here?',
+            'GUIDANCE_ACTION': 'Do it now!',
+            'GUIDANCE_DO_NOT_SHOW': "Don't show it again"
+        });
+        pipTranslateProvider.translations('ru', {
+            'GUIDANCE_TITLE': 'Что здесь делать?',
+            'GUIDANCE_ACTION': 'Сделать это сейчас!',
+            'GUIDANCE_DO_NOT_SHOW': 'Не показывать это снова'
+        });
+    });
+
+    thisModule.factory('pipReleaseIntroDialog',
+        function ($mdDialog) {
+            return {
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'intro_guidance/intro_guidance_dialog.html',
+                        controller: 'pipReleaseIntroDialogController',
+                        locals: {params: params},
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }
+    );
+
+    thisModule.controller('pipReleaseIntroDialogController',
+        function ($scope, $rootScope, $mdDialog, $mdMedia, params, $state) {
+            $scope.theme = $rootScope.$theme;
+            $scope.settings = params.settings;
+            $scope.admin = params.admin;
+            $scope.$mdMedia = $mdMedia;
+
+            var guide = params.guide;
+
+            if (!$scope.admin)
+                if ($scope.settings[params.settingsName] && $scope.settings[params.settingsName].lastId) {
+                    params.settingsName = 'release';
+                }
+
+            $scope.number = 0;
+            $scope.ln = params.ln || $rootScope.$language || 'en';
+            $scope.data = guide;
+
+            _.each($scope.data.pages, function (page) {
+                if (page.pic_id) {
+                    var picId = page.pic_id;
+                    page.picId = [];
+                    page.picId.push(picId);
+                }
+            });
+
+            // Process user actions
+            // --------------------
+
+            $scope.onChangePage = function (newNumber) {
+                $scope.number = newNumber;
+            };
+
+            $scope.onBackPage = function () {
+                if ($scope.number != 0)
+                    $scope.number -= 1;
+            };
+
+            $scope.onNextPage = function () {
+                if ($scope.number != $scope.data.pages.length - 1)
+                    $scope.number += 1;
+            };
+
+            $scope.onClose = function () {
+                if (!$scope.admin) {
+                    $scope.settings[params.settingsName].lastId = $scope.data.id;
+                    $scope.settings[params.settingsName].date = new Date();
+
+                    params.pipSettingsData.saveSettings($scope.settings, params.settingsName);
+                }
+
+
+                $mdDialog.cancel();
+            }
+        }
+    );
+
+})();

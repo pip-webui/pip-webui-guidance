@@ -1,0 +1,19 @@
+<img src="images/quotes.svg" class="pip-bg" >
+<div class='pip-content pip-popover-content lp24-flex rp24-flex '>
+    <div>
+        {{ content | translate }}
+    </div>
+
+</div>
+<div class='pip-footer lm24-flex rm24-flex position-bottom'
+     layout="row" layout-align="start center">
+
+    <div class="pip-author flex color-secondary-text" >
+        {{ author | translate }}
+    </div>
+
+    <md-button ng-click='onNextClick()' class="tm0 bm0 rm0">
+        {{ 'NEXT' | translate }}
+    </md-button>
+
+</div>

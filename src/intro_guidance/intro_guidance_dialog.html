@@ -1,0 +1,71 @@
+<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview " layout="column" md-theme="{{theme}}">
+    <div ng-if="!$routing" flex ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"
+         class="h-stretch layout layout-column {{'bg-' + data.pages[number].color}} ">
+        <div class="layout layout-row layout-align-space-between-center layout-align-xs-center-center w-stretch pip-guide-page">
+            <md-button ng-click="onBackPage()" class=" lm16 hide-xs" aria-label="BACK"
+                       ng-disabled="transaction.busy() || number == 0">
+                <md-icon md-svg-icon="icons:arrow-left" class="pip-arrow-button"
+                         ng-class="{'opacity-disabled' :number == 0}"></md-icon>
+            </md-button>
+            <div class="layout layout-column layout-align-center-center bm16">
+                <pip-collage class="flex-fixed" ng-if="data.pages[number].pic_id && (!data.pictures || !data.pictures[number])"
+                             pip-picture-ids="data.pages[number].picId" pip-unique-code="data.id"
+                             pip-multiple="false" pip-open="false" pip-rebind="true">
+                </pip-collage>
+                <div class="pip-pic" ng-if="!data.pages[number].pic_id || data.pictures[number]"
+                     style="background-image: url({{data.pictures[number]}})"></div>
+
+                <div class="layout layout-column layout-align-center-center pip-text">
+                    <p class="pip-preview-title" ng-if="data.pages[number].title[ln]">
+                        {{data.pages[number].title[ln]}}</p>
+
+                    <p class="pip-preview-content" ng-if="data.pages[number].content[ln]">
+                        {{data.pages[number].content[ln]}}</p>
+                </div>
+            </div>
+            <md-button ng-click="onNextPage()" class="rm16 hide-xs" aria-label="DOWN"
+                       ng-disabled="transaction.busy() || number == data.pages.length - 1">
+                <md-icon md-svg-icon="icons:arrow-right" class="pip-arrow-button"
+                         ng-class="{'opacity-disabled' : number == data.pages.length - 1}"></md-icon>
+            </md-button>
+        </div>
+
+        <div class=" flex-fixed flex w-stretch pip-guide-page-footer">
+
+
+            <div  layout="row" layout-align="center center" ng-if="data.pages.length > 1">
+                <md-icon ng-repeat="radio in data.pages" ng-click="onChangePage($index)" class="pip-radio-button "
+                         md-svg-icon="{{radio != data.pages[number] ? 'icons:radio-off' : 'icons:circle'}}">
+                </md-icon>
+            </div>
+
+            <div class="h64" layout="row" layout-align-xs="space-between center"
+                 layout-align="center center">
+
+                <md-button ng-click="onBackPage()" class="lm16" ng-if="$mdMedia('xs')" aria-label="BACK"
+                           ng-disabled="transaction.busy() || number == 0">
+                    <md-icon md-svg-icon="icons:arrow-left" class="pip-arrow-button"
+                             ng-class="{'opacity-disabled' :number == 0}"></md-icon>
+                </md-button>
+
+                <md-button ng-click="onClose()"
+                           class="pip-button-got rm8 lm8
+                                       {{number == data.pages.length - 1  ? 'fg-' + data.pages[number].color : 'bg-' + data.pages[number].color}}"
+                           ng-class="{'md-raised':  number == data.pages.length - 1}"
+                           aria-label="NEXT"
+                           ng-disabled="transaction.busy()">
+                    GOT IT !
+                </md-button>
+
+                <md-button ng-click="onNextPage()" class="rm16 "  ng-if="$mdMedia('xs')"  aria-label="DOWN"
+                           ng-disabled="transaction.busy() || number == data.pages.length - 1">
+                    <md-icon md-svg-icon="icons:arrow-right" class="pip-arrow-button"
+                             ng-class="{'opacity-disabled' : number == data.pages.length - 1}"></md-icon>
+                </md-button>
+            </div>
+
+
+        </div>
+
+    </div>
+</md-dialog>

@@ -1,0 +1,36 @@
+<!--
+@file Guidance dialog content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+
+<md-dialog class="pip-dialog pip-guidance-dialog" layout="column" width="768" md-theme="{{theme}}">
+    <div class="pip-header" layout="row">
+        <h3 flex class="rm16">{{title | translate}}</h3>
+        <md-button class="pip-dialog-close" ng-click="onCancel()" 
+            aria-label="{{::'CLOSE' | translate}}">
+            <span class="icon-cross"></span>
+        </md-button>
+    </div>
+    <div class="pip-body">
+        <div class="pip-content">
+            <pip-picture pip-src="imageUrl" ng-hide="!imageUrl || imageUrl == ''" class="bm16 center-block"
+                ng-style="{ width: imageWidth, height: imageHeight, display: 'block' }">
+            </pip-picture>
+
+            <div class="bm16" pip-translate-html="{{::content}}"></div>
+
+            <md-button class="md-raised md-accent w-stretch" ng-click="onAction()"
+                       ng-hide="!action || action==''"
+                       arial-label="{{::action | translate}}">
+                {{::action | translate}}
+            </md-button>
+
+            <md-checkbox aria-label="{{'DO_NOT_SHOW' | translate}}" class="w-stretch m0 tm16 regular_14"
+                         ng-model="hideToggle" ng-change="onHideToggle()" ng-show="showHideToggle"
+                         aria-label="{{::'GUIDANCE_DO_NOT_SHOW' | translate}}">
+                {{::'GUIDANCE_DO_NOT_SHOW' | translate}}
+            </md-checkbox>
+        </div>
+    </div>
+    </div>
+</md-dialog>
