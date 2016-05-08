@@ -130,7 +130,7 @@
                         $scope.title = $scope.locals.title;
                         $scope.content = 'Completely synthesize high standards in products without stand-alone action items. Dramatically synergize customized models after competitive networks. Progressively optimize highly efficient internal or "organic" sources and cost effective imperatives. Uniquely drive client-based growth strategies vis-a-vis backward-compatible bandwidth. Authoritatively seize clicks-and-mortar models through magnetic paradigms. Interactively.';
                         $scope.image = 'https://pp.vk.me/c7004/v7004812/1cbe4/SlAPkJDiUn4.jpg';
-                        $scope.link = 'http://git.pipdevs.com/pip-life/pip-life/issues';
+                        $scope.link = 'http://github.com/pip-life/pip-life/issues';
 
                         $scope.$mdMedia = $mdMedia;
 
