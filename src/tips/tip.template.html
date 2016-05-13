@@ -2,7 +2,7 @@
     {{ title | translate }}
 </div>
 
-<div class='pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64'
+<div class='pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64 pip-scroll'
      ng-class="{'tm24' : !title }">
     <div ng-if="image && $mdMedia('gt-xs')" class="pip-pic"></div>
     <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>

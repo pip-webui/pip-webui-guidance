@@ -9,7 +9,7 @@
     'use strict';
 
     angular.module('pipGuidance', [
-        'pipTipsQuotes.Service',
+        'pipTips.Service',
         'pipIntroGuidance.Service',
         'pipGuidance.Dialog',
         'pipReleaseIntroDialog'

@@ -1,5 +1,5 @@
 /**
- * @file Tips and Quotes service
+ * @file Tips service
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
@@ -8,20 +8,16 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipTipsQuotes.Service', ['pipGuidance.Templates']);
+    var thisModule = angular.module('pipTips.Service', ['pipGuidance.Templates']);
 
-    thisModule.factory('pipTipsQuotes', function ($pipPopover, pipTipsData, pipRest, $timeout, $rootScope, pipSettingsData) {
+    thisModule.factory('pipTips', function ($pipPopover, pipTipsData, pipRest, $timeout, $rootScope, pipSettingsData) {
             var tips;
-            var quotes;
             
             return {
                 getTips: getTips,
                 filterTips: filterTips,
-                filterQuotes: filterQuotes,
                 showTips: showTips,
-                showQuotes: showQuotes,
                 firstShowTips: firstShowTips,
-                waitUserTipsQuotes: waitUserTipsQuotes
             }
 
             function checkStatus(item) {
@@ -45,26 +41,7 @@
                 return tips;
 
             }
-
-            function filterQuotes(data, topic) {
-                var quotes, quotesCollection = _.filter(data, checkStatus);
-                if (topic) {
-                    quotes = [];
-                    for (var index = 0; index < quotesCollection.length; index++) {
-                        var topic = _.find(quotesCollection[index].tags, function (t) { return t == topic });
-                        if (topic) {
-                            quotes.push(quotesCollection[index]);
-                        }
-                    }
-                } else {
-                    quotes = quotesCollection;
-                }
-
-                quotes.sort(compareRandom);
-                return quotes;
-
-            }
-
+            
             function tipController($scope, $timeout, $mdMedia) {
 
                 $scope.index = 0;
@@ -110,42 +87,6 @@
                 }
             }
 
-            function quoteController($scope, $mdMedia) {
-
-                $scope.index = 0;
-
-                $scope.$mdMedia = $mdMedia;
-
-                init();
-
-                $scope.onNextClick = function () {
-                    $scope.index++;
-                    if ($scope.index == $scope.locals.quotes.length)
-                        $pipPopover.hide();
-                    else {
-                        init();
-                        $pipPopover.resize();
-                        //$rootScope.$broadcast('pipWindowResized');
-                    }
-
-                };
-
-                $scope.$on('pipWindowResized', init);
-
-                function init() {
-
-                    if ($scope.locals.quotes[$scope.index].author)
-                        $scope.author = $scope.locals.quotes[$scope.index].author[$scope.locals.ln] ?
-                            $scope.locals.quotes[$scope.index].author[$scope.locals.ln] : $scope.locals.quotes[$scope.index].author['en'];
-                    if ($scope.locals.quotes[$scope.index].text)
-                        $scope.content = $scope.locals.quotes[$scope.index].text[$scope.locals.ln] ? $scope.locals.quotes[$scope.index].text[$scope.locals.ln] :
-                            $scope.locals.quotes[$scope.index].text['en'];
-
-                    $scope.link = $scope.locals.quotes[$scope.index].more_url;
-
-                }
-            }
-
             function showTips(tips, ln, $event) {
 
                 if (tips && tips.length > 0) {
@@ -161,36 +102,13 @@
                             ln: ln || 'en'
                         },
                         controller: ['$scope', '$timeout', '$mdMedia', tipController],
-                        templateUrl: 'tips_quotes/tip.template.html'
+                        templateUrl: 'tips/tip.template.html'
                     });
                 }
 
 
             }
-
-            function showQuotes(quotes, ln, $event) {
-
-                if (quotes && quotes.length > 0) {
-                    $pipPopover.hide();
-
-                    $pipPopover.show({
-                        element: $event ? $event.currentTarget : null,
-                        class: 'pip-quote',
-                        cancelCallback: function () {
-                            console.log('backdrop clicked');
-                        },
-                        locals: {
-                            quotes: quotes,
-                            ln: ln || 'en'
-                        },
-                        controller: ['$scope', '$mdMedia', quoteController],
-                        templateUrl: 'tips_quotes/quote.template.html'
-                    });
-                }
-
-
-            }
-
+          
             function firstShowTips(tips, ln, topic, settings, kolDay) {
                 var ln = ln || 'en';
                 var kolDay = kolDay || 2;
@@ -213,43 +131,6 @@
                     }
                 }
 
-            }
-
-            function waitUserTipsQuotes(tips, quotes, ln) {
-                var idleTimer = null;
-                var idleState = false; // состояние отсутствия
-                var idleWait = 180000; // время ожидания в мс. (1/1000 секунды)
-
-                $(document).ready(function () {
-                    $(document).bind('click keydown scroll', function () {
-                        clearTimeout(idleTimer); // отменяем прежний временной отрезок
-                        if (idleState == true) {
-                            // Действия на возвращение пользователя
-                        }
-
-                        idleState = false;
-                        idleTimer = setTimeout(function () {
-                            // Действия на отсутствие пользователя
-                            $pipPopover.hide();
-                            if (!quotes)
-                                showTips(tips, ln);
-                            else if (!tips)
-                                showQuotes(quotes, ln);
-                            else {
-                                if (Math.random() < 0.5)
-                                    showTips(tips, ln);
-                                else
-                                    showQuotes(quotes, ln);
-
-                            }
-
-
-                            idleState = true;
-                        }, idleWait);
-                    });
-
-                    $("body").trigger("click"); // сгенерируем ложное событие, для запуска скрипта
-                });
             }
 
             function getTips(party, ln, topic, callBack) {

@@ -35,7 +35,7 @@
         
     thisModule.controller('SampleGuidanceController',
         function ($scope, $mdDialog, $rootScope, pipGuidance, pipSettingsData, pipReleaseIntroDialog,
-                  pipTipsQuotes, pipTipsData, $pipPopover) {
+                  pipTips, pipTipsData, $pipPopover) {
             console.log(this);
 
             $scope.onFeedbackDialog = onFeedbackDialog;
@@ -44,7 +44,6 @@
             $scope.onGuideDialog = onGuideDialog;
             $scope.showTips = showTips;
             $scope.showRealTips = showRealTips;
-            $scope.showQuote = showQuote;
             $scope.onGuideDialogReal = onGuideDialogReal;
 
             $scope.guide = {
@@ -74,19 +73,12 @@
                 type: "intro"
             };
 
-            console.log(tips, quotes);
-            var quotes = pipTipsQuotes.filterQuotes(quotes);
-            var tips = pipTipsQuotes.filterTips(tips, 'goals');
-            console.log(tips, quotes);
+            console.log(tips);
+            var tips = pipTips.filterTips(tips, 'goals');
+            console.log(tips);
             if(tips){
-                pipTipsQuotes.firstShowTips(tips, 'en', 'goals', settings);
+                pipTips.firstShowTips(tips, 'en', 'goals', settings);
             }
-
-            if(tips || quotes){
-                pipTipsQuotes.waitUserTipsQuotes(tips, quotes,'en');
-            }
-
-
 
             return;
 
@@ -159,28 +151,7 @@
 
             function showRealTips($event) {
 
-                pipTipsQuotes.showTips(tips, 'en', $event);
-            }
-
-            function showQuote() {
-                $pipPopover.show({
-                    class: 'pip-quote',
-                    cancelCallback: function () {
-                        console.log('backdrop clicked');
-                    },
-                    controller: function ($scope, $timeout) {
-
-                        $scope.author = 'Иоганн Вольфганг Гёте. Фауст';
-                        $scope.content = 'Всё песня та ж — сюжет избит: Глупец велит — мудрец гласит.';
-
-                        $scope.onNextClick = function () {
-                            $pipPopover.hide();
-                        };
-
-
-                    },
-                    templateUrl: 'guidance/quote.template.html'
-                });
+                pipTips.showTips(tips, 'en', $event);
             }
 
         }
