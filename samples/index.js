@@ -13,7 +13,7 @@
         'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
         'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
         // Application Configuration must go first
-        'pipSampleConfig', 'pipErrorHandling',
+        'pipSampleConfig',
         // Modules from WebUI Framework
         'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipLayout', 'pipNav',
          // Sample Application Modules

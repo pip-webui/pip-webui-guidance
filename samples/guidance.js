@@ -12,16 +12,16 @@
 
     thisModule.config(function (pipTranslateProvider, pipAuthStateProvider) {
 
-            // Set translation strings for the module
-            // pipTranslateProvider.translations('en', {
-            //     'MORE_URL':'See more',
-            //     'NEXT':'Next'
-            // });
+             //Set translation strings for the module
+             pipTranslateProvider.translations('en', {
+                 'MORE_URL':'See more',
+                 'NEXT':'Next'
+             });
 
-            // pipTranslateProvider.translations('ru', {
-            //     'MORE_URL': 'Больше по ссылке',
-            //     'NEXT':'Следующая'
-            // });
+             pipTranslateProvider.translations('ru', {
+                 'MORE_URL': 'Больше по ссылке',
+                 'NEXT':'Следующая'
+             });
 
             // Configure module routes
             pipAuthStateProvider
@@ -34,17 +34,13 @@
     });
         
     thisModule.controller('SampleGuidanceController',
-        function ($scope, $mdDialog, $rootScope, pipGuidance, pipSettingsData, pipReleaseIntroDialog,
-                  pipTips, pipTipsData, $pipPopover) {
-            console.log(this);
-
-            $scope.onFeedbackDialog = onFeedbackDialog;
+        function ($scope, $mdDialog, $rootScope, pipGuidance, pipTips, $pipPopover) {
 
             $scope.settings = _.defaults($rootScope.$settings, {intro: {}, release: {}});
             $scope.onGuideDialog = onGuideDialog;
             $scope.showTips = showTips;
-            $scope.showRealTips = showRealTips;
-            $scope.onGuideDialogReal = onGuideDialogReal;
+            //$scope.showRealTips = showRealTips;
+            //$scope.onGuideDialogReal = onGuideDialogReal;
 
             $scope.guide = {
                 app: "notes",
@@ -73,39 +69,26 @@
                 type: "intro"
             };
 
-            console.log(tips);
-            var tips = pipTips.filterTips(tips, 'goals');
-            console.log(tips);
-            if(tips){
-                pipTips.firstShowTips(tips, 'en', 'goals', settings);
-            }
+
+            //var tips = pipTips.filterTips(tips, 'goals');
+            ////var guides = [];
+            ////guides.push($scope.guide);
+            //
+            //if(tips){
+            //    pipTips.firstShowTips(tips, 'en', 'goals', $scope.settings);
+            //}
 
             return;
 
             function onGuideDialog() {
                 pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
             }
-
-            function onGuideDialogReal() {
-                var guide =  pipGuidance.findIntroReleaseGuide(guides, $scope.settings);
-
-                pipGuidance.showIntroReleaseGuide(guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
-            }
-
-            function onFeedbackDialog(event) {
-                $mdDialog.show({
-                    templateUrl: 'feedback/feedback_dialog.html',
-                    controller: 'FeedbackDialogController',
-                    targetEvent: event,
-                    locals: {party: $rootScope.$party}
-                }).then(
-                    function (answer) {
-                        if (answer) {
-                            var message = String() + 'RESET_PWD_SUCCESS_TEXT';
-                            $scope.onShowToast(message, 'message');
-                        }
-                    });
-            };
+            //
+            //function onGuideDialogReal() {
+            //    var guide =  pipGuidance.findIntroReleaseGuide(guides, $scope.settings);
+            //
+            //    pipGuidance.showIntroReleaseGuide(guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
+            //}
 
             function showTips() {
                 var title = 'Some long or not very long title1';
@@ -145,14 +128,13 @@
                         }
 
                     },
-                    templateUrl: 'guidance/tip.template.html'
+                    templateUrl: 'tips/tip.template.html'
                 });
             }
 
-            function showRealTips($event) {
-
-                pipTips.showTips(tips, 'en', $event);
-            }
+            //function showRealTips($event) {
+            //    pipTips.showTips(tips, 'en', $event);
+            //}
 
         }
     );

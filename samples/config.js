@@ -9,13 +9,12 @@
     'use strict';
 
     var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav', 'pipGuidesData',
-        'pipAppBar', 'pipGuidance', 'pipTipsData', 'pipSettingsData', 'pipQuotesData'  ]);
+        'pipAppBar', 'pipGuidance', 'pipTipsData', 'pipSettingsData'  ]);
 
     // Configure application services before start
     thisModule.config(
         function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipRestProvider, pipSideNavProvider, 
-                  pipQuotesDataProvider, pipGuidesDataProvider,
-                  pipAppBarProvider, pipEntryProvider, $mdIconProvider, pipTipsDataProvider) {
+                  pipGuidesDataProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
@@ -45,7 +44,7 @@
             pipSideNavProvider.sections([
                 {
                     links: [
-                        {title: 'Guidance', url: '/guidance'},
+                        {title: 'Guidance', url: '/guidance'}
                     ]
                 },
                 {
