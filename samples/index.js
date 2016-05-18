@@ -15,7 +15,7 @@
         // Application Configuration must go first
         'pipSampleConfig',
         // Modules from WebUI Framework
-        'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipLayout', 'pipNav',
+        'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipLayout', 'pipNav', 'pipErrorHandling',
          // Sample Application Modules
         'pipEntry', 'pipRest.State', 'pipSampleGuidance'
     ]);
