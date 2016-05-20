@@ -95,7 +95,7 @@
                         element: $event ? $event.currentTarget : null,
                         class: 'pip-tip',
                         cancelCallback: function () {
-                            console.log('backdrop clicked');
+                            return false
                         },
                         locals: {
                             tips: tips,
@@ -147,7 +147,6 @@
                         return tips;
                     },
                     function (error) {
-                        console.log('cc', error);
                         return null;
                     }
                 );
