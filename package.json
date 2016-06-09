@@ -68,6 +68,7 @@
     "gulp-replace": "*",
     "gulp-add-src": "*",
     "gulp-webserver": "*",
-    "gulp-awspublish": "*"
+    "gulp-awspublish": "*",
+    "gulp-ngdocs": "*"
   }
 }
