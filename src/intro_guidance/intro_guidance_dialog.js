@@ -3,23 +3,21 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipReleaseIntroDialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
 
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'GUIDANCE_TITLE': 'What should you do here?',
-            'GUIDANCE_ACTION': 'Do it now!',
-            'GUIDANCE_DO_NOT_SHOW': "Don't show it again"
+            GUIDANCE_TITLE: 'What should you do here?',
+            GUIDANCE_ACTION: 'Do it now!',
+            GUIDANCE_DO_NOT_SHOW: "Don't show it again"
         });
         pipTranslateProvider.translations('ru', {
-            'GUIDANCE_TITLE': 'Что здесь делать?',
-            'GUIDANCE_ACTION': 'Сделать это сейчас!',
-            'GUIDANCE_DO_NOT_SHOW': 'Не показывать это снова'
+            GUIDANCE_TITLE: 'Что здесь делать?',
+            GUIDANCE_ACTION: 'Сделать это сейчас!',
+            GUIDANCE_DO_NOT_SHOW: 'Не показывать это снова'
         });
     });
 
@@ -49,7 +47,7 @@
     );
 
     thisModule.controller('pipReleaseIntroDialogController',
-        function ($scope, $rootScope, $mdDialog, $mdMedia, params, $state) {
+        function ($scope, $rootScope, $mdDialog, $mdMedia, params) {
             $scope.theme = $rootScope.$theme;
             $scope.settings = params.settings;
             $scope.admin = params.admin;
@@ -57,10 +55,9 @@
 
             var guide = params.guide;
 
-            if (!$scope.admin)
-                if ($scope.settings[params.settingsName] && $scope.settings[params.settingsName].lastId) {
-                    params.settingsName = 'release';
-                }
+            if (!$scope.admin && $scope.settings[params.settingsName] && $scope.settings[params.settingsName].lastId) {
+                params.settingsName = 'release';
+            }
 
             $scope.number = 0;
             $scope.ln = params.ln || $rootScope.$language || 'en';
@@ -69,6 +66,7 @@
             _.each($scope.data.pages, function (page) {
                 if (page.pic_id) {
                     var picId = page.pic_id;
+
                     page.picId = [];
                     page.picId.push(picId);
                 }
@@ -82,13 +80,15 @@
             };
 
             $scope.onBackPage = function () {
-                if ($scope.number != 0)
+                if ($scope.number !== 0) {
                     $scope.number -= 1;
+                }
             };
 
             $scope.onNextPage = function () {
-                if ($scope.number != $scope.data.pages.length - 1)
+                if ($scope.number !== $scope.data.pages.length - 1) {
                     $scope.number += 1;
+                }
             };
 
             $scope.onClose = function () {
@@ -99,10 +99,9 @@
                     params.pipSettingsData.saveSettings($scope.settings, params.settingsName);
                 }
 
-
                 $mdDialog.cancel();
-            }
+            };
         }
     );
 
-})();
+})(window.angular, window._);

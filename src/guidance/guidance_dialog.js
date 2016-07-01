@@ -2,28 +2,26 @@
  * @file Guidance dialog
  * @copyright Digital Living Software Corp. 2014-2015
  */
- 
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('pipGuidance.Dialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'GUIDANCE_TITLE': 'What should you do here?',
-            'GUIDANCE_ACTION': 'Do it now!',
-            'GUIDANCE_DO_NOT_SHOW': "Don't show it again"
+            GUIDANCE_TITLE: 'What should you do here?',
+            GUIDANCE_ACTION: 'Do it now!',
+            GUIDANCE_DO_NOT_SHOW: "Don't show it again"
         });
         pipTranslateProvider.translations('ru', {
-            'GUIDANCE_TITLE': 'Что здесь делать?',
-            'GUIDANCE_ACTION': 'Сделать это сейчас!',
-            'GUIDANCE_DO_NOT_SHOW': 'Не показывать это снова'
+            GUIDANCE_TITLE: 'Что здесь делать?',
+            GUIDANCE_ACTION: 'Сделать это сейчас!',
+            GUIDANCE_DO_NOT_SHOW: 'Не показывать это снова'
         });
     });
 
-    thisModule.factory('pipGuidanceDialog', 
+    thisModule.factory('pipGuidanceDialog',
         function ($mdDialog) {
             return {
                 show: function (params, successCallback, cancelCallback) {
@@ -34,15 +32,15 @@
                         locals: { params: params },
                         clickOutsideToClose: true
                     })
-                    .then(function () {
-                        if (successCallback) {
-                            successCallback();
-                        }
-                    }, function () {
-                        if (cancelCallback) {
-                            cancelCallback();
-                        }
-                    });
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
                 }
             };
         }
@@ -70,12 +68,11 @@
                 $mdDialog.hide();
             };
 
-            $scope.onHideToggle = function(event) {
+            $scope.onHideToggle = function () {
                 if (params.hideToggleCallback) {
                     params.hideToggleCallback($scope.hideToggle);
-                } 
+                }
             };
-        }
-    );
+        });
 
-})();
+})(window.angular);
