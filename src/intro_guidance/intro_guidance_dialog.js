@@ -21,15 +21,38 @@
         });
     });
 
+    /**
+     * @ngdoc service
+     * @name pipReleaseIntroDialog.pipReleaseIntroDialog
+     *
+     * @description
+     * Provides API to show intro dialog.
+     */
     thisModule.factory('pipReleaseIntroDialog',
         function ($mdDialog) {
             return {
+                /**
+                 * @ngdoc method
+                 * @methodOf pipReleaseIntroDialog.pipReleaseIntroDialog
+                 * @name pipReleaseIntroDialog.pipReleaseIntroDialog:show
+                 *
+                 * @description
+                 * Shows dialog panel. Shown dialog can be close by click on backdrop space. Into callback function is
+                 * passed nothing data.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/intro_guidance/intro_guidance_dialog.js#L50 View source}
+                 * 
+                 * @param {Object} params   Options for dialog panel.
+                 * @param {Function=} successCallback   Callback function is invoked on success dialog close.
+                 * @param {Function=} cancelCallback    Callback function is invoked on error event.
+                 *
+                 */
                 show: function (params, successCallback, cancelCallback) {
                     $mdDialog.show({
                         targetEvent: params.event,
                         templateUrl: 'intro_guidance/intro_guidance_dialog.html',
                         controller: 'pipReleaseIntroDialogController',
-                        locals: {params: params},
+                        locals: { params: params },
                         clickOutsideToClose: true
                     })
                         .then(function () {

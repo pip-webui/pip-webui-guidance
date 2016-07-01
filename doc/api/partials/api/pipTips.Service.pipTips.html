@@ -1,0 +1,58 @@
+<h1><code ng:non-bindable="">pipTips</code>
+<div><span class="hint">service in module <code ng:non-bindable="">pipTips.Service</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="piptips-service-piptips-page"><p>Service provides an interface to manage tips state.
+The service is available only on run phase.</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_filtertips">filterTips(data, topic)</h3>
+<div class="filtertips"><div class="piptips-service-piptips-page piptips-service-piptips-filtertips-page"><p>Filters passed tips by passed topic and sorts result collection.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L63">View source</a></p>
+</div><h5 id="methods_filtertips_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>data</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-filtertips-page"><p>Source array of tips entities</p>
+</div></td></tr><tr><td>topic</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-filtertips-page"><p>Name of topic to filter by it</p>
+</div></td></tr></tbody></table><h5 id="methods_filtertips_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-filtertips-page"><p>Filtered and sorted collection.</p>
+</div></td></tr></table><h4 id="methods_filtertips_example">Example</h4>
+<div class="example"><div class="piptips-service-piptips-page piptips-service-piptips-filtertips-page"><pre class="prettyprint linenums">
+pipTips.filterTips(tips, 'goals');
+</pre>
+</div></div>
+</div>
+</li>
+<li><h3 id="methods_firstshowtips">firstShowTips(tips, ln, topic, settings, kolDay)</h3>
+<div class="firstshowtips"><div class="piptips-service-piptips-page piptips-service-piptips-firstshowtips-page"><p>Shows a tip</p>
+<p><a href="https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L181">View source</a></p>
+</div><h5 id="methods_firstshowtips_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tips</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-firstshowtips-page"><p>Collection of tips</p>
+</div></td></tr><tr><td>ln</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-firstshowtips-page"><p>Language for tip content</p>
+</div> <p><em>(default: 'en')</em></p></td></tr><tr><td>topic</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-firstshowtips-page"><p>Name of needed topic</p>
+</div></td></tr><tr><td>settings</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-firstshowtips-page"><p>Settings object</p>
+</div></td></tr><tr><td>kolDay</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-firstshowtips-page"><p>Days amount throughout tips should be shown</p>
+</div> <p><em>(default: 2)</em></p></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_gettips">getTips(party, ln, topic, callback)</h3>
+<div class="gettips"><div class="piptips-service-piptips-page piptips-service-piptips-gettips-page"><p>Returns tips collection according to topic.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L220">View source</a></p>
+</div><h5 id="methods_gettips_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>party</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-gettips-page"><p>User&#39;s party object</p>
+</div></td></tr><tr><td>ln</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-gettips-page"><p>Language for tip content</p>
+</div></td></tr><tr><td>topic</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-gettips-page"><p>Name of needed topic</p>
+</div></td></tr><tr><td>callback</td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-gettips-page"><p>Callback function. It gets tips collection as argument.</p>
+</div></td></tr></tbody></table></div>
+</li>
+<li><h3 id="methods_showtips">showTips(tips, ln, $event)</h3>
+<div class="showtips"><div class="piptips-service-piptips-page piptips-service-piptips-showtips-page"><p>Shows tip to user.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L144">View source</a></p>
+</div><h5 id="methods_showtips_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>tips</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-showtips-page"><p>Array of tips</p>
+</div></td></tr><tr><td>ln</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-showtips-page"><p>Chosen language</p>
+</div></td></tr><tr><td>$event <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="piptips-service-piptips-page piptips-service-piptips-showtips-page"><p>Event object</p>
+</div> <p><em>(default: null)</em></p></td></tr></tbody></table><h4 id="methods_showtips_example">Example</h4>
+<div class="example"><div class="piptips-service-piptips-page piptips-service-piptips-showtips-page"><pre class="prettyprint linenums">
+pipTips.showTips(tips, 'en');
+</pre>
+</div></div>
+</div>
+</li>
+</ul>
+</div>
+</div>

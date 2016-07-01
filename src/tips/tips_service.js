@@ -10,13 +10,25 @@
 
     var thisModule = angular.module('pipTips.Service', ['pipGuidance.Templates']);
 
-    thisModule.factory('pipTips', function ($pipPopover, pipTipsData, pipRest, $timeout, $rootScope, pipSettingsData) {
+    /**
+     * @ngdoc service
+     * @name pipTips.Service.pipTips
+     *
+     * @description
+     * Service provides an interface to manage tips state.
+     * The service is available only on run phase.
+     */
+    thisModule.factory('pipTips', function ($timeout, $rootScope, $pipPopover, pipTipsData, pipRest, pipSettingsData) {
         var tips;
 
         return {
+            /** @see getTips */
             getTips: getTips,
+            /** @see filterTips */
             filterTips: filterTips,
+            /** @see showTips */
             showTips: showTips,
+            /** @see firstShowTips */
             firstShowTips: firstShowTips
         };
 
@@ -28,6 +40,26 @@
             return Math.random() - 0.5;
         }
 
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:filterTips
+         *
+         * @description
+         * Filters passed tips by passed topic and sorts result collection.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L63 View source}
+         *
+         * @param {Array} data  Source array of tips entities
+         * @param {string} topic    Name of topic to filter by it
+         *
+         * @returns {Array} Filtered and sorted collection.
+         *
+         * @example
+         * <pre>
+         *     pipTips.filterTips(tips, 'goals');
+         * </pre>
+         */
         function filterTips(data, topic) {
             tips = [];
             var tipsCollection = _.filter(data, checkStatus),
@@ -79,7 +111,6 @@
 
                 $scope.link = $scope.locals.tips[$scope.index].more_url;
 
-
                 if ($scope.image) {
                     $timeout(function () {
                         var backdropElement = $('.pip-popover-backdrop'),
@@ -91,6 +122,25 @@
             }
         }
 
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:showTips
+         *
+         * @description
+         * Shows tip to user.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L144 View source}
+         *
+         * @param {Array} tips  Array of tips
+         * @param {string} ln   Chosen language
+         * @param {Object=} [$event=null]    Event object
+         *
+         * @example
+         * <pre>
+         *      pipTips.showTips(tips, 'en');
+         * </pre>
+         */
         function showTips(tips, ln, $event) {
 
             if (tips && tips.length > 0) {
@@ -112,6 +162,22 @@
 
         }
 
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:firstShowTips
+         *
+         * @description
+         * Shows a tip
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L181 View source}
+         *
+         * @param {Array} tips  Collection of tips
+         * @param {string} [ln='en']   Language for tip content
+         * @param {string} topic    Name of needed topic
+         * @param {Object} settings Settings object
+         * @param {Object} [kolDay=2]   Days amount throughout tips should be shown
+         */
         function firstShowTips(tips, ln, topic, settings, kolDay) {
             var ln = ln || 'en',
                 kolDay = kolDay || 2,
@@ -120,6 +186,8 @@
 
             if (settings && settings[topic].tips) {
                 show = (now.getTime() - new Date(settings[topic].tips).getTime()) / (1000 * 60 * 60 * 24);
+
+                // TODO [apidhirnyi] Extract the same code part into the function
                 if (show > kolDay) {
                     $pipPopover.hide();
                     showTips(tips, ln);
@@ -132,10 +200,24 @@
                 settings[topic].tips = new Date();
                 pipSettingsData.saveSettings(settings, topic);
             }
-
         }
 
-        function getTips(party, ln, topic, callBack) {
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:getTips
+         *
+         * @description
+         * Returns tips collection according to topic.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L220 View source}
+         *
+         * @param {Object} party    User's party object
+         * @param {string} ln       Language for tip content
+         * @param {string} topic    Name of needed topic
+         * @param {Function} callback   Callback function. It gets tips collection as argument.
+         */
+        function getTips(party, ln, topic, callback) {
 
             pipTipsData.readTips(
                 {item: {}},
@@ -143,7 +225,7 @@
                 function (result) {
                     filterTips(result.data, topic);
 
-                    if (callBack) { callBack(tips); }
+                    if (callback) { callback(tips); }
 
                     return tips;
                 },

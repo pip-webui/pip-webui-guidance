@@ -1,0 +1,41 @@
+<h1><code ng:non-bindable="">pipGuidance</code>
+<div><span class="hint">service in module <code ng:non-bindable="">pipIntroGuidance.Service</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="pipintroguidance-service-pipguidance-page"><p>Service provides an interface to show introduction guide.</p>
+</div></div>
+<h2 id="dependencies">Dependencies</h2>
+<ul class="dependencies"><li><code ng:non-bindable=""><a href="api/pipReleaseIntroDialog">pipReleaseIntroDialog</a></code>
+</li>
+</ul>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_findintroreleaseguide">findIntroReleaseGuide(guides, settings)</h3>
+<div class="findintroreleaseguide"><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-findintroreleaseguide-page"><p>Finds guideline due to passed settings options.</p>
+<p><a href="https://github.com/pip-webui/pip-webui-guidance/blob/master/src/intro_guidance/intro_guidance_service.js#80">View source</a></p>
+</div><h5 id="methods_findintroreleaseguide_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>guides</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-findintroreleaseguide-page"><p>Collection of guides</p>
+</div></td></tr><tr><td>settings</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-findintroreleaseguide-page"><p>Guide options.</p>
+</div></td></tr></tbody></table><h5 id="methods_findintroreleaseguide_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-findintroreleaseguide-page"><p>Sorted guideline. Result is dependece on &#39;settings.intro&#39; field. If it is existed than it returns
+intro guide with &#39;completed&#39; status.</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_showintroreleaseguide">showIntroReleaseGuide(guide, settings, admin, ln, party, user)</h3>
+<div class="showintroreleaseguide"><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>Shows introduction guide</p>
+<p><a href="https://github.com/pip-webui/pip-webui-guidance/blob/master/src/intro_guidance/intro_guidance_service.js#L51">View source</a></p>
+</div><h5 id="methods_showintroreleaseguide_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>guide</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>Collection with intro information</p>
+</div></td></tr><tr><td>settings</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>Settings object</p>
+</div></td></tr><tr><td>admin</td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>It is true when user has admin role</p>
+</div></td></tr><tr><td>ln</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>Tips content language</p>
+</div></td></tr><tr><td>party</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>User&#39;s party object</p>
+</div></td></tr><tr><td>user</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><p>User&#39;s profile</p>
+</div></td></tr></tbody></table><h4 id="methods_showintroreleaseguide_example">Example</h4>
+<div class="example"><div class="pipintroguidance-service-pipguidance-page pipintroguidance-service-pipguidance-showintroreleaseguide-page"><pre class="prettyprint linenums">
+pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
+</pre>
+</div></div>
+</div>
+</li>
+</ul>
+</div>
+</div>

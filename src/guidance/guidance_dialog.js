@@ -21,9 +21,32 @@
         });
     });
 
+    /**
+     * @ngdoc service
+     * @name pipGuidance.Dialog:pipGuidanceDialog
+     *
+     * @description
+     * Reproduced API to show guidance dialog stretched out on a whole screen.
+     * It is included a navigation and allows users to go back through guide.
+     */
     thisModule.factory('pipGuidanceDialog',
         function ($mdDialog) {
             return {
+                /**
+                 * @ngdoc method
+                 * @methodOf pipGuidance.Dialog:pipGuidanceDialog
+                 * @name pipGuidance.Dialog.pipGuidanceDialog:show
+                 *
+                 * @description
+                 * Shows guidance panel. Shown guidance can be close by click on backdrop space. Into callback function is
+                 * passed nothing data.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/guidance/guidance_dialog.js#L50 View source}
+                 *
+                 * @param {Object} params   Options for dialog panel.
+                 * @param {Function=} successCallback   Callback function is invoked on success dialog close.
+                 * @param {Function=} cancelCallback    Callback function is invoked on error event.
+                 */
                 show: function (params, successCallback, cancelCallback) {
                     $mdDialog.show({
                         targetEvent: params.event,
