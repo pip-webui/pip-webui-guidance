@@ -5,8 +5,6 @@ md-dialog.pip-guide-preview {
   max-height: 100% !important;
   height: 100% !important;
   min-height: 100% !important;
-
-
 }
 
 .body {
@@ -14,9 +12,15 @@ md-dialog.pip-guide-preview {
 }
 
 .pip-guide-preview {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  opacity: 1;
   color: #fff;
 
-  .pip-arrow-button, .pip-radio-button {
+  .pip-arrow-button,
+  .pip-radio-button {
     color: #fff !important;
   }
   .pip-radio-button {
@@ -25,13 +29,14 @@ md-dialog.pip-guide-preview {
     width: 12px;
   }
 
-  .pip-guide-page{
+  .pip-guide-page {
     height: ~"calc(100%  - 88px)";
     overflow: auto;
 
-    .pip-text{
+    .pip-text {
       max-width: 50%;
-      @media(max-width: 768px){
+
+      @media(max-width: 768px) {
         max-width: ~"calc(100% - 32px)";
       }
     }
@@ -39,7 +44,7 @@ md-dialog.pip-guide-preview {
 
   .pip-guide-page-footer {
     position: fixed;
-    bottom: 0px;
+    bottom: 0;
   }
 
   .button-preview {
@@ -50,17 +55,17 @@ md-dialog.pip-guide-preview {
   }
 
   .pip-button-got {
-    //font-family: @font-family-medium;
     border: @divider-border;
     border-color: #fff;
     min-width: 88px;
   }
   .pip-button-got.md-raised {
-    border: none;
+    border: 0;
   }
 
-  .pip-preview-content, .pip-preview-title {
-    margin: 0px;
+  .pip-preview-content,
+  .pip-preview-title {
+    margin: 0;
     text-align: center;
   }
 
@@ -70,10 +75,12 @@ md-dialog.pip-guide-preview {
   }
 
   @media (min-width: 768px) {
-    pip-collage, .pip-pic {
+    pip-collage,
+    .pip-pic {
       height: 250px;
       width: 250px;
       margin-bottom: 32px;
+
       .pip-collage-section {
         height: 250px;
         width: 250px;
@@ -89,20 +96,21 @@ md-dialog.pip-guide-preview {
     .pip-preview-content {
       font: @font-title;
       font-weight: 400;
-
     }
   }
   @media (max-width: 768px) {
-    pip-collage, .pip-pic {
+    pip-collage,
+    .pip-pic {
       height: 200px;
       width: 200px;
-
       margin-bottom: 32px;
+
       .pip-collage-section {
         height: 200px;
         width: 200px;
+
         img {
-          margin-left: 0px;
+          margin-left: 0;
         }
       }
     }
@@ -117,24 +125,21 @@ md-dialog.pip-guide-preview {
       font: @font-body1;
     }
   }
+
   @media (max-width: 400px) {
-    pip-collage, .pip-pic {
+    pip-collage,
+    .pip-pic {
       height: 150px;
       width: 150px;
+
       .pip-collage-section {
         height: 150px;
         width: 150px;
+
         img {
-          margin-left: 0px;
+          margin-left: 0;
         }
       }
     }
   }
-
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  opacity: 1;
-
 }

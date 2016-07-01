@@ -1,19 +1,22 @@
-@tip-color: #FBE1B0;
-@quote-color: #D9E8A9;
+@tip-color: #fbe1b0;
+@quote-color: #d9e8a9;
 
 .pip-popover-backdrop {
-  &.pip-tip .pip-popover, &.pip-help .pip-popover {
+  &.pip-tip .pip-popover,
+  &.pip-help .pip-popover {
     background-color: @tip-color;
+
     &:after {
-      border-color: rgba(255, 255 ,255 , 0);
+      border-color: rgba(255, 255, 255, 0);
       border-bottom-color: @tip-color;
     }
   }
 
   &.pip-quote .pip-popover {
     background-color: @quote-color;
-    &:after{
-      border-color: rgba(255, 255 ,255 , 0);
+
+    &:after {
+      border-color: rgba(255, 255, 255, 0);
       border-bottom-color: @quote-color;
     }
   }
@@ -36,10 +39,8 @@
       margin-bottom: 16px;
     }
 
-    .pip-markdown {
-      p {
-        line-height: 22px !important;
-      }
+    .pip-markdown p {
+      line-height: 22px !important;
     }
   }
 
@@ -68,19 +69,20 @@
       top: 10px;
       left: 16px;
     }
-    .pip-content{
+
+    .pip-content {
       margin-bottom: 48px;
       font: @font-subhead2;
       line-height: 24px;
       margin-top: 24px;
-      padding-bottom: 0px;
+      padding-bottom: 0;
     }
 
     .pip-footer {
-      padding-bottom: 0px;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      padding-top: 0px;
+      padding-bottom: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 0;
 
       .pip-author {
         height: 36px !important;
@@ -89,5 +91,4 @@
       }
     }
   }
-
 }
