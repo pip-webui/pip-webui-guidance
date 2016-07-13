@@ -75,8 +75,8 @@ It provides a service to manage show guidance or hide.
 <br/>
 
 ### <a name="tips"></a>'Tips' service
-<a href="doc/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-tips.png"/>
+<a href="docs/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="docs/images/img-tips.png"/>
 </a>
 
 It provides a service for manage visibility of this one.
