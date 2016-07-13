@@ -62,8 +62,8 @@ Another ones needed for examples running:
 ## <a name="components"></a>Module components
 
 ### <a name="guidance"></a>'Intro Guidance' service
-<a href="doc/images/img-guidance.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-guidance.png"/>
+<a href="docs/images/img-guidance.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="docs/images/img-guidance.png"/>
 </a>
 
 It provides a service to manage show guidance or hide.
@@ -153,6 +153,16 @@ gulp launch
 
 For more details on how the build process works and additional commands (available for testing and
 debugging) developers should read the [Build Instructions](docs/guides/BUILD.md).
+
+## <a name="ng-docs"> ngDocs
+
+``` bash
+# Generate '/docs'
+gulp generate-docs
+
+# Note: It you delete it, task generate new folder '/docs' with all dependencies
+
+```
 
 
 ## <a name="license"></a>License
