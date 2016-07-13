@@ -22,12 +22,17 @@ This module provides next functionality:
     <img src="doc/images/img-tips.png"/>
 </a>
 
+## Learn more about the module
+
+- [API Reference]()
+- [Online Samples](http://webui.pipdevs.com/pip-webui-guidance/index.html#/guidance)
+- [Development Guide](https://github.com/pip-webui/pip-webui/blob/master/doc/Development.md)
+- [Pip.WebUI Framework](https://github.com/pip-webui/pip-webui)
+- [Pip.WebUI Official Website](http://www.pipwebui.org)
+
 ### <a name="dependencies"></a>Module dependencies
 
 * <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a> - Core platform module
-
-Another ones needed for examples running:
-
 * <a href="https://github.com/pip-webui/pip-webui-tasks">pip-webui-tasks</a> - Helpful tasks for development
 * <a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a> - Vendor libraries
 * <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a> - CSS Framework
@@ -42,7 +47,7 @@ Another ones needed for examples running:
 * <a href="https://github.com/pip-webui/pip-webui-test">pip-webui-test</a> - Provides mocked data needed for unit testing
 
 ###<a name="contributing"></a>Contributing
-Read more [here](link.com)
+[Read](https://github.com/pip-webui/pip-webui/blob/master/doc/Contributing.md#contributing-to-pipwebui-framework) contributing guide.
 
 ### <a name="build"></a>Build
 
@@ -69,17 +74,6 @@ gulp build
 
 # To launch samples (build will open samples/index page in web browser)
 gulp launch
-```
-
-
-## <a name="ng-docs"> ngDocs
-
-``` bash
-# Generate '/docs'
-gulp generate-docs
-
-# Note: It you delete it, task generate new folder '/docs' with all dependencies
-
 ```
 
 
