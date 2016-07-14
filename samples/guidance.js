@@ -3,9 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('pipSampleGuidance', ['pipTranslate', 'pipRest', 'pipGuidance']);
@@ -14,13 +12,23 @@
 
              //Set translation strings for the module
              pipTranslateProvider.translations('en', {
-                 'MORE_URL':'See more',
-                 'NEXT':'Next'
+                 MORE_URL:'See more',
+                 NEXT:'Next',
+                 GUIDE: 'Guidance',
+                 GUIDE_DIALOG: 'Guide dialog',
+                 GUIDE_TIP: 'Guide tip',
+                 OPEN_GUIDE_DIALOG: 'Open guide dialog',
+                 OPEN_GUIDE_TIP: 'Open guide tip'
              });
 
              pipTranslateProvider.translations('ru', {
-                 'MORE_URL': 'Больше по ссылке',
-                 'NEXT':'Следующая'
+                 MORE_URL: 'Больше по ссылке',
+                 NEXT:'Следующая',
+                 GUIDE: 'Рекомендации',
+                 GUIDE_DIALOG: 'Диалог введения',
+                 GUIDE_TIP: 'Совет',
+                 OPEN_GUIDE_DIALOG: 'Открыть диалог введения',
+                 OPEN_GUIDE_TIP: 'Открыть совет'
              });
 
             // Configure module routes
@@ -34,20 +42,16 @@
     });
         
     thisModule.controller('SampleGuidanceController',
-        function ($scope, $mdDialog, $rootScope, pipGuidance, pipTips, $pipPopover) {
+        function ($scope, $mdDialog, $rootScope, pipGuidance, pipTips, $pipPopover, pipAppBar) {
 
             $scope.settings = _.defaults($rootScope.$settings, {intro: {}, release: {}});
             $scope.onGuideDialog = onGuideDialog;
             $scope.showTips = showTips;
-            //$scope.showRealTips = showRealTips;
-            //$scope.onGuideDialogReal = onGuideDialogReal;
+
+            showAppBar();
 
             $scope.guide = {
                 app: "notes",
-                created: "2015-10-06T14:05:20.173Z",
-                creator_id: "55f69876440421b812d4e701",
-                creator_name: "Doggy Dogg",
-                id: "5613d5204c5c65b511bf6f8c",
                 pages: [
                     {
                         title: {en: "Title 1", ru: "Русский заголовок a a a a a a a a a a a a a a a a a a a a a aa "},
@@ -69,26 +73,12 @@
                 type: "intro"
             };
 
-
-            //var tips = pipTips.filterTips(tips, 'goals');
-            ////var guides = [];
-            ////guides.push($scope.guide);
-            //
-            //if(tips){
-            //    pipTips.firstShowTips(tips, 'en', 'goals', $scope.settings);
-            //}
-
             return;
 
             function onGuideDialog() {
-                pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
+                pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en',
+                    $rootScope.$party, $rootScope.$user);
             }
-            //
-            //function onGuideDialogReal() {
-            //    var guide =  pipGuidance.findIntroReleaseGuide(guides, $scope.settings);
-            //
-            //    pipGuidance.showIntroReleaseGuide(guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
-            //}
 
             function showTips() {
                 var title = 'Some long or not very long title1';
@@ -124,19 +114,21 @@
                                     popover.find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
 
                             }, 100);
-
                         }
-
                     },
                     templateUrl: 'tips/tip.template.html'
                 });
             }
 
-            //function showRealTips($event) {
-            //    pipTips.showTips(tips, 'en', $event);
-            //}
+            function showAppBar() {
+                pipAppBar.showMenuNavIcon();
+                pipAppBar.showTitleText('GUIDE');
+                pipAppBar.showLanguage();
+
+                pipAppBar.showShadowSm();
+            }
 
         }
     );
 
-})();
+})(window.angular);

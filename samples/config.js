@@ -3,9 +3,7 @@
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav', 'pipGuidesData',
@@ -51,11 +49,11 @@
                     links: [
                         {title: 'Signout', url: '/signout'}
                     ]
-                },
+                }
             ]);
 
         }
     );
 
-})();
+})(window.angular);
 

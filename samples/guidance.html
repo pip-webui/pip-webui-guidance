@@ -1,26 +1,39 @@
-<h3>Guide</h3>
+<md-toolbar class="pip-appbar-ext">
+</md-toolbar>
 
-<div class="h48" layout="row" layout-align="start center">
-    <md-button  ng-click="onGuideDialog($event)">
-        open guide dialog
-    </md-button>
+<pip-document>
+    <div class="pip-menu-container">
+        <div class="pip-content-container p24">
 
-    <!--<md-button ng-click="onGuideDialogReal()">-->
-        <!--open guide dialog real-->
-    <!--</md-button>-->
-</div>
+            <h2 class="text-title tm0 bm24">{{ 'GUIDE' | translate }}</h2>
 
+            <h3 class="text-subhead2">{{:: 'GUIDE_DIALOG' | translate}}</h3>
 
-<h3>Tips</h3>
-<div class="h48" layout="row" layout-align="start center">
-    <md-button ng-click="showTips($event)">
-        open preview tips
-    </md-button>
+            <div layout="row" layout-align="start center">
+                <md-button class="lm0" ng-click="onGuideDialog($event)">
+                    {{ 'OPEN_GUIDE_DIALOG' | translate}}
+                </md-button>
+            </div>
 
+            <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
 
-    <!--<md-button ng-click="showRealTips($event)">-->
-        <!--open real tips-->
-    <!--</md-button>-->
-</div>
+    <strong>pipGuidance.showIntroReleaseGuide</strong>
+            ($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
 
+</pre>
+
+            <md-divider class="tm8"></md-divider>
+
+            <h3 class="text-subhead2">{{:: 'GUIDE_TIP' | translate}}</h3>
+
+            <div class="h48" layout="row" layout-align="start center">
+                <md-button class="lm0" ng-click="showTips($event)">
+                    {{ 'OPEN_GUIDE_TIP' | translate}}
+                </md-button>
+
+            </div>
+        </div>
+    </div>
+</pip-document>
 
