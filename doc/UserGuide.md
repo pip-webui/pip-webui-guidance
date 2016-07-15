@@ -42,15 +42,17 @@ For Intro Guide dialog needs data:
 ```javascript
     pipGuidance.showIntroReleaseGuide(guide, settings, visual, language, $party, $user);
 ```
+
 Options:
-- guide - object for display
+
+- guide - data set what must be viewed
 - settings - object for settings
-- visual = true if you want save display this guide (если вы хотите сохранять просмотры данного guide)
-- language - display language (for example language = 'en' or language = 'ru')
+- visual - save views of this guide
+- language // ru, en etc..
 
 For show tips:
 
-- Add $pipPopover in controller
+### Add _$pipPopover_ in controller
 ```javascript
    $pipPopover.show({
        class: 'pip-tip', // class name for pip-popover
@@ -61,7 +63,7 @@ For show tips:
          title: 'Some title',
          content: 'Text content'
          image: ''
-         link: 'https://github.com/pip-webui/pip-webui-guidance/blob/master/doc/UserGuide.md'
+         link: 'some link'
        },
        controller: function ($scope) { // function for logic
 
@@ -75,14 +77,15 @@ For show tips:
    });
 ```
 
-Can use tips service for filter and display tips:
-
-- Add pipTips in controller
+**Can use tips service for filter and display tips:**
+Add _**pipTips**_ in controller.
 
 Service have functions:
-- filterTips(data, topic) - filtering tips by topic field and status == 'completed' (фильтрация подсказок по полю topic и статусу завершено)
--- data - tips array
--- topic - string for filtering
+
+- filterTips(data, topic) - filtering tips by topic field or data and status == 'completed'
+- data - tips array
+- topic - string for filtering
+_or_
 - showTips(tips, ln, $event) - show tips
--- tips - tips array
--- ln - language
+- tips - tips array
+- ln - language
