@@ -12,9 +12,10 @@
 ```
 and in project add following code
 
-Add 'pipGuidance' module
-Add pipGuidance in controller
-For Intro Guide dialog needs data:
+- Add 'pipGuidance' module
+
+* For Intro Guide dialog needs data:
+- Add pipGuidance in controller
 ```javascript
     var guide = {
         id: '1',
@@ -36,12 +37,39 @@ For Intro Guide dialog needs data:
         ] // array pictures for pages
     };
 ```
-For show dialogs:
+* For show dialogs:
 ```javascript
     pipGuidance.showIntroReleaseGuide(guide, settings, visual, language, $party, $user);
 ```
-Options:
-guide - object for display
-settings - object for settings
-visual = true if you want save display this guide (если вы хотите сохранять просмотры данного guide)
-language - display language (for example language = 'en' or language = 'ru')
+* Options:
+- guide - object for display
+- settings - object for settings
+- visual = true if you want save display this guide (если вы хотите сохранять просмотры данного guide)
+- language - display language (for example language = 'en' or language = 'ru')
+
+* For show tips:
+
+- Add $pipPopover in controller
+```javascript
+   $pipPopover.show({
+       class: 'pip-tip', // class name for pip-popover
+       cancelCallback: function () {
+          //backdrop clicked
+       },
+       locals:{ // options
+         title: 'Some title',
+         content: 'Text content'
+         image: ''
+         link: 'https://github.com/pip-webui/pip-webui-guidance/blob/master/doc/UserGuide.md'
+       },
+       controller: function ($scope) { // function for logic
+
+           $scope.title = $scope.locals.title;
+           $scope.content = $scope.locals.content;
+           $scope.image   = $scope.locals.image;
+           $scope.link    = $scope.locals.link;
+
+       },
+       templateUrl: 'tips/tip.template.html' // html template
+   });
+```
