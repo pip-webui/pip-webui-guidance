@@ -1,4 +1,4 @@
-# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Guidance page module
+# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Guidance module
 
 Guidance module is part of [Pip.WebUI framework](https://github.com/pip-webui/pip-webui)
 
@@ -22,58 +22,57 @@ This module provides next functionality:
     <img src="doc/images/img-tips.png"/>
 </a>
 
+### How to use it
+
+```javascript
+$scope.guide = {
+    app: "notes",
+    pages: [
+        {
+            title: {en: "Eng Title", ru: "Русский заголовок"},
+            content: {en: "Eng content", ru: "Русское содержание"},
+            more_url: "",
+            color: "cyan"
+        },
+        {
+            title: {en: "Title 2", ru: "Aa"},
+            content: {en: "Text 2", ru: "Conveniently transition optimal e-commerce rather than B2B partnerships."},
+            more_url: "", 
+            color: "cyan",
+            pic_id: '56eaeea387639bd2182fbac6' //Get imeges with id from database
+        }
+    ],
+    pictures: [
+        'http://rjnzhfvfnthjdbx.gorod.tomsk.ru/posts-files/74/223/i/25.jpg'
+    ],
+    status: "new",
+    topic: "ffff444",
+    type: "intro"
+};
+
+```
+
 ## Learn more about the module
 
 - [API Reference]()
 - [Online Samples](http://webui.pipdevs.com/pip-webui-guidance/index.html#/guidance)
-- [Development Guide](https://github.com/pip-webui/pip-webui/blob/master/doc/Development.md)
+- [Developer Guide](https://github.com/pip-webui/pip-webui/blob/master/doc/DeveloperGuide.md)
+- [User Guide](doc/userGuide.md)
+- [Forum](https://pip-webui.blogspot.com/)
 - [Pip.WebUI Framework](https://github.com/pip-webui/pip-webui)
 - [Pip.WebUI Official Website](http://www.pipwebui.org)
 
 ### <a name="dependencies"></a>Module dependencies
 
-* <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a> - Core platform module
-* <a href="https://github.com/pip-webui/pip-webui-tasks">pip-webui-tasks</a> - Helpful tasks for development
-* <a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a> - Vendor libraries
-* <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a> - CSS Framework
-* <a href="https://github.com/pip-webui/pip-webui-rest">pip-webui-rest</a> - REST API module
-* <a href="https://github.com/pip-webui/pip-webui-controls">pip-webui-controls</a> - Assets of control components
-* <a href="https://github.com/pip-webui/pip-webui-layouts">pip-webui-layouts</a> - Document layouts
-* <a href="https://github.com/pip-webui/pip-webui-nav">pip-webui-nav</a> - All-sufficient UI navigation components
-* <a href="https://github.com/pip-webui/pip-webui-locations">pip-webui-locations</a> - UI components to define and show users location
-* <a href="https://github.com/pip-webui/pip-webui-pictures">pip-webui-pictures</a> - UI picture components
-* <a href="https://github.com/pip-webui/pip-webui-entry">pip-webui-entry</a> - All-sufficient UI component for any authenticate states
-* <a href="https://github.com/pip-webui/pip-webui-errors">pip-webui-errors</a> - UI components for handling app pages and connection errors
-* <a href="https://github.com/pip-webui/pip-webui-test">pip-webui-test</a> - Provides mocked data needed for unit testing
+* <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a>
+* <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a>
+* <a href="https://github.com/pip-webui/pip-webui-rest">pip-webui-rest</a>
+* <a href="https://github.com/pip-webui/pip-webui-controls">pip-webui-controls</a>
 
-###<a name="contributing"></a>Contributing
-[Read](https://github.com/pip-webui/pip-webui/blob/master/doc/Contributing.md#contributing-to-pipwebui-framework) contributing guide.
-
-### <a name="build"></a>Build
-
-Projects environment deploy is occurred using npm and gulp.
-
-First install or update your local project's **npm** tools:
+### Bower components
 
 ```bash
-# First install all the NPM tools:
-npm install
-
-# Or update
-npm update
-```
-
-Then run the **gulp** tasks:
-
-```bash
-# To clean '/build' and '/dist' directories
-gulp clean
-
-# To build distribution files in the `/dist` directory
-gulp build
-
-# To launch samples (build will open samples/index page in web browser)
-gulp launch
+    bower install
 ```
 
 
