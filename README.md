@@ -57,7 +57,7 @@ $scope.guide = {
 - [API Reference]()
 - [Online Samples](http://webui.pipdevs.com/pip-webui-guidance/index.html#/guidance)
 - [Developer Guide](https://github.com/pip-webui/pip-webui/blob/master/doc/DeveloperGuide.md)
-- [User Guide](doc/userGuide.md)
+- [User Guide](doc/UserGuide.md)
 - [Forum](https://pip-webui.blogspot.com/)
 - [Pip.WebUI Framework](https://github.com/pip-webui/pip-webui)
 - [Pip.WebUI Official Website](http://www.pipwebui.org)
@@ -66,6 +66,7 @@ $scope.guide = {
 
 * <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a>
 * <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a>
+* <a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a>
 * <a href="https://github.com/pip-webui/pip-webui-rest">pip-webui-rest</a>
 * <a href="https://github.com/pip-webui/pip-webui-controls">pip-webui-controls</a>
 
