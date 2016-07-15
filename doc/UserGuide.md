@@ -14,7 +14,7 @@ and in project add following code
 
 - Add 'pipGuidance' module
 
-* For Intro Guide dialog needs data:
+For Intro Guide dialog needs data:
 - Add pipGuidance in controller
 ```javascript
     var guide = {
@@ -34,20 +34,21 @@ and in project add following code
         ],
         pictures: [
             'http://rjnzhfvfnthjdbx.gorod.tomsk.ru/posts-files/74/223/i/25.jpg'
-        ] // array pictures for pages
+        ], // array pictures for pages
+        topic: 'goal' // topic for filter guides
     };
 ```
 * For show dialogs:
 ```javascript
     pipGuidance.showIntroReleaseGuide(guide, settings, visual, language, $party, $user);
 ```
-* Options:
+Options:
 - guide - object for display
 - settings - object for settings
 - visual = true if you want save display this guide (если вы хотите сохранять просмотры данного guide)
 - language - display language (for example language = 'en' or language = 'ru')
 
-* For show tips:
+For show tips:
 
 - Add $pipPopover in controller
 ```javascript
@@ -73,3 +74,15 @@ and in project add following code
        templateUrl: 'tips/tip.template.html' // html template
    });
 ```
+
+Can use tips service for filter and display tips:
+
+- Add pipTips in controller
+
+Service have functions:
+- filterTips(data, topic) - filtering tips by topic field and status == 'completed' (фильтрация подсказок по полю topic и статусу завершено)
+-- data - tips array
+-- topic - string for filtering
+- showTips(tips, ln, $event) - show tips
+-- tips - tips array
+-- ln - language
