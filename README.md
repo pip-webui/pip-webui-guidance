@@ -15,8 +15,6 @@ This module provides next functionality:
     <img src="doc/images/img-guidance.png"/>
 </a>
 
-[Online Example](http://webui.pipdevs.com/pip-webui-guidance/index.html#/guidance)
-
 ### <a name="tips"></a>'Tips' service
 <a href="doc/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-tips.png"/>
