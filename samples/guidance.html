@@ -8,31 +8,94 @@
             <h2 class="text-title tm0 bm24">{{ 'GUIDE' | translate }}</h2>
 
             <h3 class="text-subhead2">{{:: 'GUIDE_DIALOG' | translate}}</h3>
-
-            <div layout="row" layout-align="start center">
+            <div>
                 <md-button class="lm0" ng-click="onGuideDialog($event)">
                     {{ 'OPEN_GUIDE_DIALOG' | translate}}
                 </md-button>
             </div>
-
             <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
 <pre class="text-body1 color-window-bg p16">
 
-    <strong>pipGuidance.showIntroReleaseGuide</strong>
-            ($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
+        <strong>pipGuidance.showIntroReleaseGuide</strong>
+                ($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
 
 </pre>
 
             <md-divider class="tm8"></md-divider>
 
             <h3 class="text-subhead2">{{:: 'GUIDE_TIP' | translate}}</h3>
-
-            <div class="h48" layout="row" layout-align="start center">
+            <div>
                 <md-button class="lm0" ng-click="showTips($event)">
                     {{ 'OPEN_GUIDE_TIP' | translate}}
                 </md-button>
-
             </div>
+            <h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+        <strong>JS: </strong>
+        
+        var title = 'Some long or not very long title1';
+                pipPopover.show({
+                    class: 'pip-tip',
+                    cancelCallback: function () {
+                        console.log('backdrop clicked');
+                    },
+                    <strong>locals</strong>:{
+                        title: title
+                    },
+                    controller: function ($scope, $timeout, $mdMedia) {
+    
+                        $scope.title = $scope.<strong>locals</strong>.title;
+                        $scope.content = 'Completely synthesize high standards in products without stand-alone'
+                            + 'action items. Dramatically synergize customized models after competitive networks.'
+                            + 'Progressively optimize highly efficient internal or "organic" sources and cost effective'
+                            + 'imperatives. Uniquely drive client-based growth strategies vis-a-vis backward-compatible '
+                            + 'bandwidth. Authoritatively seize clicks-and-mortar models through magnetic paradigms.';
+                        $scope.image = 'https://pp.vk.me/c7004/v7004812/1cbe4/SlAPkJDiUn4.jpg';
+                        $scope.link = 'http://github.com/pip-life/pip-life/issues';
+    
+                        $scope.$mdMedia = $mdMedia;
+                        position();
+                        $scope.onNextClick = function () {
+                            $pipPopover.hide();
+                        };
+    
+                        function position() {
+                            $timeout(function () {
+                                var backdropElement = $('.pip-popover-backdrop'),
+                                popover = backdropElement.find('.pip-popover');
+                                popover.find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
+                            }, 100);
+                        }
+                    },
+                    templateUrl: 'tips/<strong>tip.template.html</strong>'
+                });
+    
+        <strong>HTML tip.template.html: </strong>
+
+            &lt;div ng-if="title" class='pip-title p24-flex flex-fixed bp16'&gt;
+                {{ title | translate }}
+            &lt;/div&gt;
+            
+            &lt;div class='pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64 pip-scroll'
+                ng-class="{'tm24' : !title }"&gt;
+                &lt;div ng-if="image && $mdMedia('gt-xs')" class="pip-pic"&gt;&lt;/div&gt;
+                &lt;pip-markdown pip-text="content" pip-rebind="true"&gt;&lt;/pip-markdown&gt;
+            &lt;/div&gt;
+            
+            &lt;div class='pip-footer lm24-flex rm24-flex position-bottom'
+                layout="row" layout-align="start center"&gt;
+                &lt;a ng-if="link" target="_blank" href="{{ link }}" class="text-body2" flex&gt;
+                    {{ 'MORE_URL' | translate }}
+                &lt;/a&gt;
+                &lt;div  ng-if="!link" flex&gt;&lt;/div&gt;
+                
+                &lt;md-button ng-click='onNextClick()' class="rm0"&gt;
+                    {{ 'NEXT' | translate }}
+                &lt;/md-button&gt;
+                
+            &lt;/div&gt;
+</pre>
+
         </div>
     </div>
 </pip-document>
