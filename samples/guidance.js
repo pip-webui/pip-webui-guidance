@@ -42,7 +42,13 @@
     });
         
     thisModule.controller('SampleGuidanceController',
-        function ($scope, $mdDialog, $rootScope, pipGuidance, pipTips, $pipPopover, pipAppBar) {
+        function ($scope, $mdDialog, $rootScope, pipGuidance, pipTips, $pipPopover, pipAppBar, $timeout) {
+
+            $timeout(function() {
+                $('pre code').each(function(i, block) {
+                    Prism.highlightElement(block);
+                });
+            });
 
             $scope.settings = _.defaults($rootScope.$settings, {intro: {}, release: {}});
             $scope.onGuideDialog = onGuideDialog;

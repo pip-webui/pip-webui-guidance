@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="../lib/pip-webui-pictures.css"/>
     <link rel="stylesheet" href="../lib/pip-webui-entry.css"/>
     <link rel="stylesheet" href="../dist/pip-webui-guidance.css"/>
+
+    <link rel="stylesheet" href="../node_modules/prismjs/themes/prism.css">
+    <link rel="stylesheet" href="../node_modules/pip-webui-tasks/node_modules/prismjs/themes/prism.css">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 
@@ -32,6 +35,9 @@
     <script src="../lib/pip-webui-entry.js"></script>
     <script src="../dist/pip-webui-guidance.js"></script>
 
+    <script src="../node_modules/prismjs/prism.js"></script>
+    <script src="../node_modules/pip-webui-tasks/node_modules/prismjs/prism.js"></script>
+
     <script src="config.js"></script>
     <script src="guidance.js"></script>
     <script src="index.js"></script>
@@ -42,6 +48,14 @@
 
         .pip-content-container {
             overflow-x: auto;
+        }
+
+        pre {
+            border-radius: 4px;
+        }
+
+        .flat {
+            box-shadow: none !important;
         }
     </style>
 </head>
@@ -54,7 +68,7 @@
         <pip-sidenav>
         </pip-sidenav>
 
-        <pip-main-body ui-view ng-cloak layout="column">
+        <pip-main-body ui-view ng-cloak class="layout-column">
         </pip-main-body>
     </pip-main>
 </body>
