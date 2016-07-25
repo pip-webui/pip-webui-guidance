@@ -1,6 +1,6 @@
-<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview " layout="column" md-theme="{{theme}}">
-    <div ng-if="!$routing" flex ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"
-         class="h-stretch layout layout-column {{'bg-' + data.pages[number].color}} ">
+<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview layout-column" md-theme="{{theme}}">
+    <div ng-if="!$routing" ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"
+         class="h-stretch flex layout layout-column {{'bg-' + data.pages[number].color}} ">
         <div class="layout layout-row layout-align-space-between-center layout-align-xs-center-center w-stretch pip-guide-page">
             <md-button ng-click="onBackPage()" class=" lm16 hide-xs" aria-label="BACK"
                        ng-disabled="transaction.busy() || number == 0">
@@ -33,14 +33,13 @@
         <div class=" flex-fixed flex w-stretch pip-guide-page-footer">
 
 
-            <div  layout="row" layout-align="center center" ng-if="data.pages.length > 1">
+            <div  class="layout-row layout-align-center-center" ng-if="data.pages.length > 1">
                 <md-icon ng-repeat="radio in data.pages" ng-click="onChangePage($index)" class="pip-radio-button "
                          md-svg-icon="{{radio != data.pages[number] ? 'icons:radio-off' : 'icons:circle'}}">
                 </md-icon>
             </div>
 
-            <div class="h64" layout="row" layout-align-xs="space-between center"
-                 layout-align="center center">
+            <div class="h64 layout-row layout-align-xs-space-between-center layout-align-center-center">
 
                 <md-button ng-click="onBackPage()" class="lm16" ng-if="$mdMedia('xs')" aria-label="BACK"
                            ng-disabled="transaction.busy() || number == 0">

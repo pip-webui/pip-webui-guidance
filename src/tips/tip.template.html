@@ -8,12 +8,11 @@
     <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>
 </div>
 
-<div class='pip-footer lm24-flex rm24-flex position-bottom'
-     layout="row" layout-align="start center">
-    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2" flex>
+<div class="pip-footer lm24-flex rm24-flex position-bottom layout-row layout-align-start-center">
+    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2 flex">
         {{ 'MORE_URL' | translate }}
     </a>
-    <div  ng-if="!link" flex></div>
+    <div  ng-if="!link" class="flex"></div>
 
     <md-button ng-click='onNextClick()' class="rm0">
         {{ 'NEXT' | translate }}

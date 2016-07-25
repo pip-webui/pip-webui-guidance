@@ -1,3 +1,20 @@
+/**
+ * @file Registration of all guidance components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function () {
+    'use strict';
+
+    angular.module('pipGuidance', [
+        'pipTips.Service',
+        'pipIntroGuidance.Service',
+        'pipGuidance.Dialog',
+        'pipReleaseIntroDialog'
+    ]);
+
+})(window.angular);
+
 (function(module) {
 try {
   module = angular.module('pipGuidance.Templates');
@@ -11,9 +28,9 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-guidance-dialog" layout="column" width="768" md-theme="{{theme}}">\n' +
-    '    <div class="pip-header" layout="row">\n' +
-    '        <h3 flex class="rm16">{{title | translate}}</h3>\n' +
+    '<md-dialog class="pip-dialog pip-guidance-dialog layout-column" width="768" md-theme="{{theme}}">\n' +
+    '    <div class="pip-header layout-row">\n' +
+    '        <h3 class="rm16 flex">{{title | translate}}</h3>\n' +
     '        <md-button class="pip-dialog-close" ng-click="onCancel()" \n' +
     '            aria-label="{{::\'CLOSE\' | translate}}">\n' +
     '            <span class="icon-cross"></span>\n' +
@@ -54,9 +71,9 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('intro_guidance/intro_guidance_dialog.html',
-    '<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview " layout="column" md-theme="{{theme}}">\n' +
-    '    <div ng-if="!$routing" flex ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"\n' +
-    '         class="h-stretch layout layout-column {{\'bg-\' + data.pages[number].color}} ">\n' +
+    '<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview layout-column" md-theme="{{theme}}">\n' +
+    '    <div ng-if="!$routing" ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"\n' +
+    '         class="h-stretch flex layout layout-column {{\'bg-\' + data.pages[number].color}} ">\n' +
     '        <div class="layout layout-row layout-align-space-between-center layout-align-xs-center-center w-stretch pip-guide-page">\n' +
     '            <md-button ng-click="onBackPage()" class=" lm16 hide-xs" aria-label="BACK"\n' +
     '                       ng-disabled="transaction.busy() || number == 0">\n' +
@@ -89,14 +106,13 @@ module.run(['$templateCache', function($templateCache) {
     '        <div class=" flex-fixed flex w-stretch pip-guide-page-footer">\n' +
     '\n' +
     '\n' +
-    '            <div  layout="row" layout-align="center center" ng-if="data.pages.length > 1">\n' +
+    '            <div  class="layout-row layout-align-center-center" ng-if="data.pages.length > 1">\n' +
     '                <md-icon ng-repeat="radio in data.pages" ng-click="onChangePage($index)" class="pip-radio-button "\n' +
     '                         md-svg-icon="{{radio != data.pages[number] ? \'icons:radio-off\' : \'icons:circle\'}}">\n' +
     '                </md-icon>\n' +
     '            </div>\n' +
     '\n' +
-    '            <div class="h64" layout="row" layout-align-xs="space-between center"\n' +
-    '                 layout-align="center center">\n' +
+    '            <div class="h64 layout-row layout-align-xs-space-between-center layout-align-center-center">\n' +
     '\n' +
     '                <md-button ng-click="onBackPage()" class="lm16" ng-if="$mdMedia(\'xs\')" aria-label="BACK"\n' +
     '                           ng-disabled="transaction.busy() || number == 0">\n' +
@@ -147,12 +163,11 @@ module.run(['$templateCache', function($templateCache) {
     '    <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>\n' +
     '</div>\n' +
     '\n' +
-    '<div class=\'pip-footer lm24-flex rm24-flex position-bottom\'\n' +
-    '     layout="row" layout-align="start center">\n' +
-    '    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2" flex>\n' +
+    '<div class="pip-footer lm24-flex rm24-flex position-bottom layout-row layout-align-start-center">\n' +
+    '    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2 flex">\n' +
     '        {{ \'MORE_URL\' | translate }}\n' +
     '    </a>\n' +
-    '    <div  ng-if="!link" flex></div>\n' +
+    '    <div  ng-if="!link" class="flex"></div>\n' +
     '\n' +
     '    <md-button ng-click=\'onNextClick()\' class="rm0">\n' +
     '        {{ \'NEXT\' | translate }}\n' +
@@ -163,51 +178,54 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
- * @file Registration of all guidance components
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipGuidance', [
-        'pipTips.Service',
-        'pipIntroGuidance.Service',
-        'pipGuidance.Dialog',
-        'pipReleaseIntroDialog'
-    ]);
-    
-})();
-/**
  * @file Guidance dialog
  * @copyright Digital Living Software Corp. 2014-2015
  */
- 
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('pipGuidance.Dialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
 
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'GUIDANCE_TITLE': 'What should you do here?',
-            'GUIDANCE_ACTION': 'Do it now!',
-            'GUIDANCE_DO_NOT_SHOW': "Don't show it again"
+            GUIDANCE_TITLE: 'What should you do here?',
+            GUIDANCE_ACTION: 'Do it now!',
+            GUIDANCE_DO_NOT_SHOW: "Don't show it again"
         });
         pipTranslateProvider.translations('ru', {
-            'GUIDANCE_TITLE': 'Что здесь делать?',
-            'GUIDANCE_ACTION': 'Сделать это сейчас!',
-            'GUIDANCE_DO_NOT_SHOW': 'Не показывать это снова'
+            GUIDANCE_TITLE: 'Что здесь делать?',
+            GUIDANCE_ACTION: 'Сделать это сейчас!',
+            GUIDANCE_DO_NOT_SHOW: 'Не показывать это снова'
         });
     }]);
 
-    thisModule.factory('pipGuidanceDialog', 
+    /**
+     * @ngdoc service
+     * @name pipGuidance.Dialog:pipGuidanceDialog
+     *
+     * @description
+     * Reproduced API to show guidance dialog stretched out on a whole screen.
+     * It is included a navigation and allows users to go back through guide.
+     */
+    thisModule.factory('pipGuidanceDialog',
         ['$mdDialog', function ($mdDialog) {
             return {
+                /**
+                 * @ngdoc method
+                 * @methodOf pipGuidance.Dialog:pipGuidanceDialog
+                 * @name pipGuidance.Dialog.pipGuidanceDialog:show
+                 *
+                 * @description
+                 * Shows guidance panel. Shown guidance can be close by click on backdrop space. Into callback function is
+                 * passed nothing data.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/guidance/guidance_dialog.js#L50 View source}
+                 *
+                 * @param {Object} params   Options for dialog panel.
+                 * @param {Function=} successCallback   Callback function is invoked on success dialog close.
+                 * @param {Function=} cancelCallback    Callback function is invoked on error event.
+                 */
                 show: function (params, successCallback, cancelCallback) {
                     $mdDialog.show({
                         targetEvent: params.event,
@@ -216,15 +234,15 @@ module.run(['$templateCache', function($templateCache) {
                         locals: { params: params },
                         clickOutsideToClose: true
                     })
-                    .then(function () {
-                        if (successCallback) {
-                            successCallback();
-                        }
-                    }, function () {
-                        if (cancelCallback) {
-                            cancelCallback();
-                        }
-                    });
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
                 }
             };
         }]
@@ -252,50 +270,70 @@ module.run(['$templateCache', function($templateCache) {
                 $mdDialog.hide();
             };
 
-            $scope.onHideToggle = function(event) {
+            $scope.onHideToggle = function () {
                 if (params.hideToggleCallback) {
                     params.hideToggleCallback($scope.hideToggle);
-                } 
+                }
             };
-        }]
-    );
+        }]);
 
-})();
+})(window.angular);
 
 /**
  * @file Guidance dialog
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
-
-(function () {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipReleaseIntroDialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
 
     thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'GUIDANCE_TITLE': 'What should you do here?',
-            'GUIDANCE_ACTION': 'Do it now!',
-            'GUIDANCE_DO_NOT_SHOW': "Don't show it again"
+            GUIDANCE_TITLE: 'What should you do here?',
+            GUIDANCE_ACTION: 'Do it now!',
+            GUIDANCE_DO_NOT_SHOW: "Don't show it again"
         });
         pipTranslateProvider.translations('ru', {
-            'GUIDANCE_TITLE': 'Что здесь делать?',
-            'GUIDANCE_ACTION': 'Сделать это сейчас!',
-            'GUIDANCE_DO_NOT_SHOW': 'Не показывать это снова'
+            GUIDANCE_TITLE: 'Что здесь делать?',
+            GUIDANCE_ACTION: 'Сделать это сейчас!',
+            GUIDANCE_DO_NOT_SHOW: 'Не показывать это снова'
         });
     }]);
 
+    /**
+     * @ngdoc service
+     * @name pipReleaseIntroDialog.pipReleaseIntroDialog
+     *
+     * @description
+     * Provides API to show intro dialog.
+     */
     thisModule.factory('pipReleaseIntroDialog',
         ['$mdDialog', function ($mdDialog) {
             return {
+                /**
+                 * @ngdoc method
+                 * @methodOf pipReleaseIntroDialog.pipReleaseIntroDialog
+                 * @name pipReleaseIntroDialog.pipReleaseIntroDialog:show
+                 *
+                 * @description
+                 * Shows dialog panel. Shown dialog can be close by click on backdrop space. Into callback function is
+                 * passed nothing data.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/intro_guidance/intro_guidance_dialog.js#L50 View source}
+                 * 
+                 * @param {Object} params   Options for dialog panel.
+                 * @param {Function=} successCallback   Callback function is invoked on success dialog close.
+                 * @param {Function=} cancelCallback    Callback function is invoked on error event.
+                 *
+                 */
                 show: function (params, successCallback, cancelCallback) {
                     $mdDialog.show({
                         targetEvent: params.event,
                         templateUrl: 'intro_guidance/intro_guidance_dialog.html',
                         controller: 'pipReleaseIntroDialogController',
-                        locals: {params: params},
+                        locals: { params: params },
                         clickOutsideToClose: true
                     })
                         .then(function () {
@@ -313,7 +351,7 @@ module.run(['$templateCache', function($templateCache) {
     );
 
     thisModule.controller('pipReleaseIntroDialogController',
-        ['$scope', '$rootScope', '$mdDialog', '$mdMedia', 'params', '$state', function ($scope, $rootScope, $mdDialog, $mdMedia, params, $state) {
+        ['$scope', '$rootScope', '$mdDialog', '$mdMedia', 'params', function ($scope, $rootScope, $mdDialog, $mdMedia, params) {
             $scope.theme = $rootScope.$theme;
             $scope.settings = params.settings;
             $scope.admin = params.admin;
@@ -321,10 +359,9 @@ module.run(['$templateCache', function($templateCache) {
 
             var guide = params.guide;
 
-            if (!$scope.admin)
-                if ($scope.settings[params.settingsName] && $scope.settings[params.settingsName].lastId) {
-                    params.settingsName = 'release';
-                }
+            if (!$scope.admin && $scope.settings[params.settingsName] && $scope.settings[params.settingsName].lastId) {
+                params.settingsName = 'release';
+            }
 
             $scope.number = 0;
             $scope.ln = params.ln || $rootScope.$language || 'en';
@@ -333,6 +370,7 @@ module.run(['$templateCache', function($templateCache) {
             _.each($scope.data.pages, function (page) {
                 if (page.pic_id) {
                     var picId = page.pic_id;
+
                     page.picId = [];
                     page.picId.push(picId);
                 }
@@ -346,13 +384,15 @@ module.run(['$templateCache', function($templateCache) {
             };
 
             $scope.onBackPage = function () {
-                if ($scope.number != 0)
+                if ($scope.number !== 0) {
                     $scope.number -= 1;
+                }
             };
 
             $scope.onNextPage = function () {
-                if ($scope.number != $scope.data.pages.length - 1)
+                if ($scope.number !== $scope.data.pages.length - 1) {
                     $scope.number += 1;
+                }
             };
 
             $scope.onClose = function () {
@@ -363,239 +403,367 @@ module.run(['$templateCache', function($templateCache) {
                     params.pipSettingsData.saveSettings($scope.settings, params.settingsName);
                 }
 
-
                 $mdDialog.cancel();
-            }
+            };
         }]
     );
 
-})();
+})(window.angular, window._);
 
 /**
  * @file Guidance service
  * @copyright Digital Living Software Corp. 2014-2015
  */
 
-/* global angular */
-
-(function () {
+(function (angular, _) {
     'use strict';
 
     var thisModule = angular.module('pipIntroGuidance.Service', ['pipReleaseIntroDialog']);
 
-    thisModule.factory('pipGuidance', ['pipReleaseIntroDialog', 'pipSettingsData', '$rootScope', function ( pipReleaseIntroDialog, pipSettingsData, $rootScope) {
+    /**
+     * @ngdoc service
+     * @name pipIntroGuidance.Service.pipGuidance
+     *
+     * @description
+     * Service provides an interface to show introduction guide.
+     *
+     * @requires pipReleaseIntroDialog
+     */
+    thisModule.factory('pipGuidance', ['pipReleaseIntroDialog', 'pipSettingsData', function (pipReleaseIntroDialog, pipSettingsData) {
 
-            return {
-                showIntroReleaseGuide: showIntroReleaseGuide,
-                findIntroReleaseGuide: findIntroReleaseGuide
+        return {
+            /** @see showIntroReleaseGuide */
+            showIntroReleaseGuide: showIntroReleaseGuide,
+            /** @see findIntroReleaseGuide */
+            findIntroReleaseGuide: findIntroReleaseGuide
+        };
+
+        /**
+         * @ngdoc method
+         * @methodOf pipIntroGuidance.Service.pipGuidance
+         * @name pipIntroGuidance.Service.pipGuidance:showIntroReleaseGuide
+         *
+         * @description
+         * Shows introduction guide
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/intro_guidance/intro_guidance_service.js#L51 View source}
+         *
+         * @param {Object} guide    Collection with intro information
+         * @param {Object} settings Settings object
+         * @param {boolean} admin   It is true when user has admin role
+         * @param {string} ln       Tips content language
+         * @param {Object} party    User's party object
+         * @param {Object} user     User's profile
+         *
+         * @example
+         * <pre>
+         *     pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
+         * </pre>
+         */
+        function showIntroReleaseGuide(guide, settings, admin, ln, party, user) {
+            if (guide && party.id === user.id) {
+                pipReleaseIntroDialog.show({
+                    guide: guide,
+                    settings: settings,
+                    settingsName: guide.type === 'intro' ? 'intro' : 'release',
+                    pipSettingsData: pipSettingsData,
+                    admin: admin,
+                    ln: ln
+                });
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @methodOf pipIntroGuidance.Service.pipGuidance
+         * @name  pipIntroGuidance.Service.pipGuidance:findIntroReleaseGuide
+         *
+         * @description
+         * Finds guideline due to passed settings options.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/intro_guidance/intro_guidance_service.js#80 View source}
+         *
+         * @param {Object} guides   Collection of guides
+         * @param {Object} settings Guide options.
+         *
+         * @return {Object} Sorted guideline. Result is dependece on 'settings.intro' field. If it is existed than it returns
+         * intro guide with 'completed' status.
+         */
+        function findIntroReleaseGuide(guides, settings) {
+            var guidesSort;
+
+            if (!settings.intro || !settings.intro.lastId) {
+                // TODO [apidhirnyi] Make chaining for filter and sortBy
+                guidesSort = _.filter(guides, function (guide) {
+                    return guide.type === 'intro' && guide.status === 'completed';
+                });
+
+                guidesSort = _.sortBy(guidesSort, function (guide) {
+                    return -new Date(guide.created).getTime();
+                });
+
+                return guidesSort[0];
             }
 
-            function showIntroReleaseGuide(guide, settings, admin, ln, party, user) {
-                if (guide && party.id == user.id)
-                    pipReleaseIntroDialog.show(
-                        {
-                            guide: guide,
-                            settings: settings,
-                            settingsName: guide.type == 'intro' ? 'intro': 'release',
-                            pipSettingsData: pipSettingsData,
-                            admin: admin,
-                            ln: ln
+            guidesSort = _.filter(guides, function (guide) {
+                return guide.type === 'new release' && guide.status === 'completed';
+            });
 
-                        }
-                    );
+            guidesSort = _.sortBy(guidesSort, function (guide) {
+                return -new Date(guide.created).getTime();
+            });
 
-            };
+            if (!settings.intro.date || (guidesSort.length > 0 &&
+                new Date(settings.intro.date) < new Date(guidesSort[0].created) &&
+                guidesSort[0].id != settings.release.lastId)) {
+                return guidesSort[0];
+            }
 
-            function findIntroReleaseGuide(guides, settings) {
-                var guidesSort;
+            return null;
+        }
+    }]);
 
-                if (!settings.intro || !settings.intro.lastId) {
-                    guidesSort = _.filter(guides, function (guide) {
-                        return guide.type == 'intro' && guide.status == 'completed';
-                    });
-                    guidesSort = _.sortBy(guidesSort, function (guide) {
-                        return -new Date(guide.created).getTime();
-                    });
-                    return guidesSort[0];
-                }
-                else {
-                    guidesSort = _.filter(guides, function (guide) {
-                        return guide.type == 'new release' && guide.status == 'completed';
-                    });
+})(window.angular, window._);
 
-                    guidesSort = _.sortBy(guidesSort, function (guide) {
-                        return -new Date(guide.created).getTime();
-                    });
-
-                    if (!settings.intro.date || (guidesSort.length > 0 && new Date(settings.intro.date) < new Date(guidesSort[0].created)
-                        && guidesSort[0].id != settings.release.lastId)) {
-                        return guidesSort[0];
-                    } else {
-                        return null;
-                    }
-                }
-            };
-        }]
-    );
-
-})();
 /**
  * @file Tips service
  * @copyright Digital Living Software Corp. 2014-2016
  */
 
-/* global angular */
+/* global $ */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('pipTips.Service', ['pipGuidance.Templates']);
 
-    thisModule.factory('pipTips', ['$pipPopover', 'pipTipsData', 'pipRest', '$timeout', '$rootScope', 'pipSettingsData', function ($pipPopover, pipTipsData, pipRest, $timeout, $rootScope, pipSettingsData) {
-            var tips;
+    /**
+     * @ngdoc service
+     * @name pipTips.Service.pipTips
+     *
+     * @description
+     * Service provides an interface to manage tips state.
+     * The service is available only on run phase.
+     */
+    thisModule.factory('pipTips', ['$timeout', '$rootScope', '$pipPopover', 'pipTipsData', 'pipRest', 'pipSettingsData', function ($timeout, $rootScope, $pipPopover, pipTipsData, pipRest, pipSettingsData) {
+        var tips;
 
-            return {
-                getTips: getTips,
-                filterTips: filterTips,
-                showTips: showTips,
-                firstShowTips: firstShowTips,
-            }
+        return {
+            /** @see getTips */
+            getTips: getTips,
+            /** @see filterTips */
+            filterTips: filterTips,
+            /** @see showTips */
+            showTips: showTips,
+            /** @see firstShowTips */
+            firstShowTips: firstShowTips
+        };
 
-            function checkStatus(item) {
-                return item.status == 'completed' ? true : false;
-            }
+        function checkStatus(item) {
+            return item.status === 'completed';
+        }
 
-            function compareRandom(a, b) {
-                return Math.random() - 0.5;
-            }
+        function compareRandom() {
+            return Math.random() - 0.5;
+        }
 
-            function filterTips(data, topic) {
-                tips = [];
-                var tipsCollection = _.filter(data, checkStatus);
-                for (var index = 0; index < tipsCollection.length; index++) {
-                    var topic = _.find(tipsCollection[index].topics, function (t) { return t == topic; });
-                    if (topic) {
-                        tips.push(tipsCollection[index]);
-                    }
-                }
-                tips.sort(compareRandom);
-                return tips;
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:filterTips
+         *
+         * @description
+         * Filters passed tips by passed topic and sorts result collection.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L63 View source}
+         *
+         * @param {Array} data  Source array of tips entities
+         * @param {string} topic    Name of topic to filter by it
+         *
+         * @returns {Array} Filtered and sorted collection.
+         *
+         * @example
+         * <pre>
+         *     pipTips.filterTips(tips, 'goals');
+         * </pre>
+         */
+        function filterTips(data, topic) {
+            tips = [];
+            var tipsCollection = _.filter(data, checkStatus),
+                index;
 
-            }
+            for (index = 0; index < tipsCollection.length; index++) {
+                var topic = _.find(tipsCollection[index].topics, function (t) { return t == topic; });
 
-            function tipController($scope, $timeout, $mdMedia) {
-
-                $scope.index = 0;
-
-                $scope.$mdMedia = $mdMedia;
-
-                init();
-
-                $scope.onNextClick = function () {
-                    $scope.index++;
-                    if ($scope.index == $scope.locals.tips.length)
-                        $pipPopover.hide();
-                    else {
-                        init();
-                        $pipPopover.resize();
-                        //$rootScope.$broadcast('pipWindowResized');
-                    }
-
-                };
-
-                $scope.$on('pipWindowResized', init);
-
-                function init() {
-
-                    $scope.title = $scope.locals.tips[$scope.index].title[$scope.locals.ln];
-                    $scope.content = $scope.locals.tips[$scope.index].content[$scope.locals.ln];
-                    if ($scope.locals.tips[$scope.index].pic_id) {
-                        $scope.image = pipRest.serverUrl() + '/api/parties/' + $scope.locals.tips[$scope.index].creator_id
-                            + '/files/' + $scope.locals.tips[$scope.index].pic_id + '/content';
-                    }
-
-                    $scope.link = $scope.locals.tips[$scope.index].more_url;
-
-
-                    if ($scope.image)
-                        $timeout(function () {
-                            var backdropElement = $('.pip-popover-backdrop'),
-                                popover = backdropElement.find('.pip-popover');
-                            popover.find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
-
-                        }, 100);
-
+                if (topic) {
+                    tips.push(tipsCollection[index]);
                 }
             }
 
-            function showTips(tips, ln, $event) {
+            tips.sort(compareRandom);
 
-                if (tips && tips.length > 0) {
+            return tips;
+        }
+
+        function tipController($scope, $timeout, $mdMedia) {
+
+            $scope.index = 0;
+
+            $scope.$mdMedia = $mdMedia;
+
+            init();
+
+            $scope.onNextClick = function () {
+                $scope.index++;
+
+                if ($scope.index === $scope.locals.tips.length) {
                     $pipPopover.hide();
-                    $pipPopover.show({
-                        element: $event ? $event.currentTarget : null,
-                        class: 'pip-tip',
-                        cancelCallback: function () {
-                            return false
-                        },
-                        locals: {
-                            tips: tips,
-                            ln: ln || 'en'
-                        },
-                        controller: ['$scope', '$timeout', '$mdMedia', tipController],
-                        templateUrl: 'tips/tip.template.html'
-                    });
-                }
-
-
-            }
-
-            function firstShowTips(tips, ln, topic, settings, kolDay) {
-                var ln = ln || 'en';
-                var kolDay = kolDay || 2;
-                var now = new Date();
-                var show;
-                if (settings && settings[topic].tips) {
-                    show = (now.getTime() - new Date(settings[topic].tips).getTime()) / (1000 * 60 * 60 * 24);
-                    if (show > kolDay) {
-                        $pipPopover.hide();
-                        showTips(tips, ln);
-                        settings[topic].tips = new Date();
-                        pipSettingsData.saveSettings(settings, topic);
-                    }
                 } else {
-                    if (settings[topic]) {
-                        $pipPopover.hide();
-                        showTips(tips, ln);
-                        settings[topic].tips = new Date();
-                        pipSettingsData.saveSettings(settings, topic);
-                    }
+                    init();
+                    $pipPopover.resize();
+                    // $rootScope.$broadcast('pipWindowResized');
+                }
+            };
+
+            $scope.$on('pipWindowResized', init);
+
+            function init() {
+
+                $scope.title = $scope.locals.tips[$scope.index].title[$scope.locals.ln];
+                $scope.content = $scope.locals.tips[$scope.index].content[$scope.locals.ln];
+                if ($scope.locals.tips[$scope.index].pic_id) {
+                    $scope.image = pipRest.serverUrl() + '/api/parties/' + $scope.locals.tips[$scope.index].creator_id
+                        + '/files/' + $scope.locals.tips[$scope.index].pic_id + '/content';
                 }
 
+                $scope.link = $scope.locals.tips[$scope.index].more_url;
+
+                if ($scope.image) {
+                    $timeout(function () {
+                        var backdropElement = $('.pip-popover-backdrop'),
+                            popover = backdropElement.find('.pip-popover');
+
+                        popover.find('.pip-pic').css('background-image', 'url(' + $scope.image + ')');
+                    }, 100);
+                }
             }
+        }
 
-            function getTips(party, ln, topic, callBack) {
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:showTips
+         *
+         * @description
+         * Shows tip to user.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L144 View source}
+         *
+         * @param {Array} tips  Array of tips
+         * @param {string} ln   Chosen language
+         * @param {Object=} [$event=null]    Event object
+         *
+         * @example
+         * <pre>
+         *      pipTips.showTips(tips, 'en');
+         * </pre>
+         */
+        function showTips(tips, ln, $event) {
 
-                pipTipsData.readTips(
-                    {item: {}},
-                    null,
-                    function (result) {
-
-                        filterTips(result.data, topic);
-
-                        if (callBack) callBack(tips);
-
-                        return tips;
+            if (tips && tips.length > 0) {
+                $pipPopover.hide();
+                $pipPopover.show({
+                    element: $event ? $event.currentTarget : null,
+                    class: 'pip-tip',
+                    cancelCallback: function () {
+                        return false;
                     },
-                    function (error) {
-                        return null;
-                    }
-                );
+                    locals: {
+                        tips: tips,
+                        ln: ln || 'en'
+                    },
+                    controller: ['$scope', '$timeout', '$mdMedia', tipController],
+                    templateUrl: 'tips/tip.template.html'
+                });
             }
 
+        }
 
-        }]
-    );
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:firstShowTips
+         *
+         * @description
+         * Shows a tip
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L181 View source}
+         *
+         * @param {Array} tips  Collection of tips
+         * @param {string} [ln='en']   Language for tip content
+         * @param {string} topic    Name of needed topic
+         * @param {Object} settings Settings object
+         * @param {Object} [kolDay=2]   Days amount throughout tips should be shown
+         */
+        function firstShowTips(tips, ln, topic, settings, kolDay) {
+            var ln = ln || 'en',
+                kolDay = kolDay || 2,
+                now = new Date(),
+                show;
 
-})();
+            if (settings && settings[topic].tips) {
+                show = (now.getTime() - new Date(settings[topic].tips).getTime()) / (1000 * 60 * 60 * 24);
+
+                // TODO [apidhirnyi] Extract the same code part into the function
+                if (show > kolDay) {
+                    $pipPopover.hide();
+                    showTips(tips, ln);
+                    settings[topic].tips = new Date();
+                    pipSettingsData.saveSettings(settings, topic);
+                }
+            } else if (settings[topic]) {
+                $pipPopover.hide();
+                showTips(tips, ln);
+                settings[topic].tips = new Date();
+                pipSettingsData.saveSettings(settings, topic);
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @methodOf pipTips.Service.pipTips
+         * @name pipTips.Service.pipTips:getTips
+         *
+         * @description
+         * Returns tips collection according to topic.
+         *
+         * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/tips/tips_service.js#L220 View source}
+         *
+         * @param {Object} party    User's party object
+         * @param {string} ln       Language for tip content
+         * @param {string} topic    Name of needed topic
+         * @param {Function} callback   Callback function. It gets tips collection as argument.
+         */
+        function getTips(party, ln, topic, callback) {
+
+            pipTipsData.readTips(
+                {item: {}},
+                null,
+                function (result) {
+                    filterTips(result.data, topic);
+
+                    if (callback) { callback(tips); }
+
+                    return tips;
+                },
+                function () {
+                    return null;
+                }
+            );
+        }
+
+    }]);
+
+})(window.angular);
+
 //# sourceMappingURL=pip-webui-guidance.js.map

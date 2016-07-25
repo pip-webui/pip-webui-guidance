@@ -54,12 +54,12 @@ md-dialog.pip-guide-preview {
   overflow-x: hidden;
 }
 .pip-guide-preview {
-  color: #fff;
   position: fixed;
   width: 100%;
   top: 0;
   height: 100%;
   opacity: 1;
+  color: #fff;
 }
 .pip-guide-preview .pip-arrow-button,
 .pip-guide-preview .pip-radio-button {
@@ -84,7 +84,7 @@ md-dialog.pip-guide-preview {
 }
 .pip-guide-preview .pip-guide-page-footer {
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
 }
 .pip-guide-preview .button-preview {
   line-height: 48px;
@@ -98,11 +98,11 @@ md-dialog.pip-guide-preview {
   min-width: 88px;
 }
 .pip-guide-preview .pip-button-got.md-raised {
-  border: none;
+  border: 0;
 }
 .pip-guide-preview .pip-preview-content,
 .pip-guide-preview .pip-preview-title {
-  margin: 0px;
+  margin: 0;
   text-align: center;
 }
 .pip-guide-preview .pip-pic {
@@ -145,7 +145,7 @@ md-dialog.pip-guide-preview {
   }
   .pip-guide-preview pip-collage .pip-collage-section img,
   .pip-guide-preview .pip-pic .pip-collage-section img {
-    margin-left: 0px;
+    margin-left: 0;
   }
   .pip-guide-preview .pip-preview-title {
     font: normal 500 20px Roboto, 'Helvetica Neue', sans-serif;
@@ -168,24 +168,24 @@ md-dialog.pip-guide-preview {
   }
   .pip-guide-preview pip-collage .pip-collage-section img,
   .pip-guide-preview .pip-pic .pip-collage-section img {
-    margin-left: 0px;
+    margin-left: 0;
   }
 }
 .pip-popover-backdrop.pip-tip .pip-popover,
 .pip-popover-backdrop.pip-help .pip-popover {
-  background-color: #FBE1B0;
+  background-color: #fbe1b0;
 }
 .pip-popover-backdrop.pip-tip .pip-popover:after,
 .pip-popover-backdrop.pip-help .pip-popover:after {
   border-color: rgba(255, 255, 255, 0);
-  border-bottom-color: #FBE1B0;
+  border-bottom-color: #fbe1b0;
 }
 .pip-popover-backdrop.pip-quote .pip-popover {
-  background-color: #D9E8A9;
+  background-color: #d9e8a9;
 }
 .pip-popover-backdrop.pip-quote .pip-popover:after {
   border-color: rgba(255, 255, 255, 0);
-  border-bottom-color: #D9E8A9;
+  border-bottom-color: #d9e8a9;
 }
 .pip-popover-backdrop .pip-title {
   overflow: hidden;
@@ -230,13 +230,13 @@ md-dialog.pip-guide-preview {
   font: normal 500 16px Roboto, 'Helvetica Neue', sans-serif;
   line-height: 24px;
   margin-top: 24px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 .pip-popover-backdrop.pip-quote .pip-footer {
-  padding-bottom: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-top: 0px;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
 }
 .pip-popover-backdrop.pip-quote .pip-footer .pip-author {
   height: 36px !important;
