@@ -26,6 +26,13 @@ Todo: Replace that with two images: one with real tip and another one with real 
     <img src="doc/images/img-tips.png"/>
 </a>
 
+### pipGuidance service
+
+**pipGuidance** service provides a convenient method to open Guidance dialog or popups with data, pulled from the server
+filtered for specific page or context.
+
+Todo: Add code snippet that shows how to open dialogs and popups
+
 ## Learn more about the module
 
 - [User's guide](doc/UsersGuide.md)
