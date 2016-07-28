@@ -1,13 +1,16 @@
-<a name="1.0.0"></a>
-### 1.0.0 (2016-05-01)
+# Pip.WebUI.Guidance Changelog
 
-#### Features
-* **intro** Intro guidance
-* **tips** Guidance tips
-* **quotes** Inspirational quotes 
+## <a name="1.0.0"></a> 1.0.0 (2016-07-30)
 
-#### Breaking Changes
-* API in most controls was changed since the previous version
+Initial release with introductory guidance, tips and inspirationa quotes.
 
-#### Bug Fixes
+### Features
+* **intro**: introductory guidance
+* **tips**: guidance tips
+* **quotes**: inspirational quotes 
+
+### Breaking Changes
+No breaking changes in this version
+
+### Bug Fixes
 No fixes in this version 
