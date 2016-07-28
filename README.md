@@ -10,16 +10,16 @@ The module requires **guides**, **tips** and **quotes** standard REST API to be 
 
 ### pipGuidanceDialog
 
-**pipGuidanceDialog** shows to new user introductory guidance that tells the story about the application, or release guidance that explain changes in the new product version.
+**pipGuidanceDialog** shows to new user introductory guidance that tells the story about the application, or shows release guidance that explain changes in the new product version.
 
 Todo: Replace the guidance dialog with the real one
 <a href="doc/images/img-guidance.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-guidance.png"/>
 </a>
 
-### pipPopupGuidance dialog
+### pipTipQuotePopup
 
-**pipPopupGuidance** dialog show to users random tips and inspirational quotes that can be filtered for the current context or page.
+**pipTipQuotePopup** shows to users random tips and inspirational quotes that can be filtered for the current context or page.
 
 Todo: Replace that with two images: one with real tip and another one with real quote on the **entire** application screen
 <a href="doc/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
