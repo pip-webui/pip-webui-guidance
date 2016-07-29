@@ -8,28 +8,33 @@ and quotes with just few lines of code.
 
 The module requires **guides**, **tips** and **quotes** standard REST API to be available on the server.
 
-### pipGuidanceDialog
+### Introductory and release guidance
 
-**pipGuidanceDialog** shows to new user introductory guidance that tells the story about the application, or shows release guidance that explain changes in the new product version.
+Introductory guidance that tells to new user a story about the application. Release guidance that explain changes in the new product version.
 
 Todo: Replace the guidance dialog with the real one
 <a href="doc/images/img-guidance.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-guidance.png"/>
 </a>
 
-### pipTipQuotePopup
+### Useful tips
 
-**pipTipQuotePopup** shows to users random tips and inspirational quotes that can be filtered for the current context or page.
+Tips can provide useful advices for the current page or application context where user is working on.
 
 Todo: Replace that with two images: one with real tip and another one with real quote on the **entire** application screen
 <a href="doc/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-tips.png"/>
 </a>
 
+### Inspirational quotes
+
+Quotes visualize inspirational ideas to user, entertain them, give them food for thoughts.
+
+Todo: Add screenshot with inspiration quote
+
 ### pipGuidance service
 
-**pipGuidance** service provides a convenient method to open Guidance dialog or popups with data, pulled from the server
-filtered for specific page or context.
+**pipGuidance** service provides a convenient method to open guidance dialogs or popups with tips and quotes, using data pulled from the server and filtered for specific page or context.
 
 Todo: Add code snippet that shows how to open dialogs and popups
 
