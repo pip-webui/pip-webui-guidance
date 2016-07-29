@@ -7,6 +7,19 @@
             <div class="scrolled">
 
                 <h2 class="text-title tm0 bm24">{{ 'GUIDE' | translate }}</h2>
+                <h3 class="text-subhead2">{{:: 'GUIDE_RELEASE_DIALOG' | translate}}</h3>
+                <div>
+                    <md-button class="lm0 md-raised md-accent flat" ng-click="showReleaseGuidance($event)">
+                        {{:: 'OPEN_GUIDE_RELEASE_DIALOG' | translate}}
+                    </md-button>
+                </div>
+
+                <h3 class="text-subhead2">{{:: 'GUIDE_INTRO_DIALOG' | translate}}</h3>
+                <div>
+                    <md-button class="lm0 md-raised md-accent flat" ng-click="showIntroGuidance($event)">
+                        {{:: 'OPEN_GUIDE_INTRO_DIALOG' | translate}}
+                    </md-button>
+                </div>
 
                 <h3 class="text-subhead2">{{:: 'GUIDE_DIALOG' | translate}}</h3>
                 <div>

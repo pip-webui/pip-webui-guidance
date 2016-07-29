@@ -17,14 +17,54 @@
      *
      * @requires pipReleaseIntroDialog
      */
-    thisModule.factory('pipGuidance', function (pipReleaseIntroDialog, pipSettingsData) {
+    thisModule.factory('pipGuidance', function (pipReleaseIntroDialog, pipSettingsData, pipGuidesData, $rootScope) {
 
         return {
             /** @see showIntroReleaseGuide */
             showIntroReleaseGuide: showIntroReleaseGuide,
             /** @see findIntroReleaseGuide */
-            findIntroReleaseGuide: findIntroReleaseGuide
+            findIntroReleaseGuide: findIntroReleaseGuide,
+            /** @see showIntroGuidance */
+            showIntroGuidance: showIntroGuidance,
+            /** @see showReleaseGuidance*/
+            showReleaseGuidance: showReleaseGuidance
         };
+
+        function showReleaseGuidance(filter) {
+            pipGuidesData.readGuides({filter: filter}, function (guides) {
+                guides = _.filter(guides, function (guide) {
+                    return guide.type = 'new release' && guide.status === 'completed';
+                });
+                if (guides.length > 0) {
+                    pipReleaseIntroDialog.show({
+                        guide: guides[0],
+                        settings: {},
+                        settingsName: 'new release',
+                        pipSettingsData: null,
+                        admin: true,
+                        ln: $rootScope.$language
+                    });
+                }
+            })
+        }
+
+        function showIntroGuidance(filter) {
+            pipGuidesData.readIntroGuides({filter: filter}, function (guides) {
+                guides = _.filter(guides, function (guide) {
+                    return guide.type = 'intro' && guide.status === 'completed';
+                });
+                if (guides.length > 0) {
+                    pipReleaseIntroDialog.show({
+                        guide: guides[0],
+                        settings: {},
+                        settingsName: 'intro',
+                        pipSettingsData: null,
+                        admin: true,
+                        ln: $rootScope.$language
+                    });
+                }
+            })
+        }
 
         /**
          * @ngdoc method

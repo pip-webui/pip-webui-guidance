@@ -18,7 +18,11 @@
                  GUIDE_DIALOG: 'Guide dialog',
                  GUIDE_TIP: 'Guide tip',
                  OPEN_GUIDE_DIALOG: 'Open guide dialog',
-                 OPEN_GUIDE_TIP: 'Open guide tip'
+                 OPEN_GUIDE_TIP: 'Open guide tip',
+                 OPEN_GUIDE_INTRO_DIALOG: 'Open guide intro dialog',
+                 GUIDE_INTRO_DIALOG:'Intro guide dialog',
+                 OPEN_GUIDE_RELEASE_DIALOG: 'Open guide release dialog',
+                 GUIDE_RELEASE_DIALOG:'Release guide dialog'
              });
 
              pipTranslateProvider.translations('ru', {
@@ -28,7 +32,11 @@
                  GUIDE_DIALOG: 'Диалог введения',
                  GUIDE_TIP: 'Совет',
                  OPEN_GUIDE_DIALOG: 'Открыть диалог введения',
-                 OPEN_GUIDE_TIP: 'Открыть совет'
+                 OPEN_GUIDE_TIP: 'Открыть совет',
+                 OPEN_GUIDE_INTRO_DIALOG: 'Открыть диалог введения',
+                 GUIDE_INTRO_DIALOG:'Диалог введения',
+                 OPEN_GUIDE_RELEASE_DIALOG: 'Открыть диалог релиза',
+                 GUIDE_RELEASE_DIALOG:'Диалог релиза'
              });
 
             // Configure module routes
@@ -52,6 +60,8 @@
 
             $scope.settings = _.defaults($rootScope.$settings, {intro: {}, release: {}});
             $scope.onGuideDialog = onGuideDialog;
+            $scope.showIntroGuidance = showIntroGuidance;
+            $scope.showReleaseGuidance = showReleaseGuidance;
             $scope.showTips = showTips;
 
             showAppBar();
@@ -81,6 +91,14 @@
 
             return;
 
+            function showIntroGuidance() {
+                pipGuidance.showIntroGuidance();
+            }
+
+            function showReleaseGuidance() {
+                pipGuidance.showReleaseGuidance();
+            }
+            
             function onGuideDialog() {
                 pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en',
                     $rootScope.$party, $rootScope.$user);
