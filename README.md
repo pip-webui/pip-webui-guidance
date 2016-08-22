@@ -13,8 +13,8 @@ The module requires **guides**, **tips** and **quotes** standard REST API to be 
 Introductory guidance that tells to new user a story about the application. Release guidance that explain changes in the new product version.
 
 Todo: Replace the guidance dialog with the real one
-<a href="doc/images/img-guidance.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-guidance.png"/>
+<a href="https://github.com/pip-webui/pip-webui-guidance/raw/master/doc/images/img-guidance.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="https://github.com/pip-webui/pip-webui-guidance/raw/master/doc/images/img-guidance.png"/>
 </a>
 
 ### Useful tips
@@ -22,8 +22,8 @@ Todo: Replace the guidance dialog with the real one
 Tips can provide useful advices for the current page or application context where user is working on.
 
 Todo: Replace that with two images: one with real tip and another one with real quote on the **entire** application screen
-<a href="doc/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-tips.png"/>
+<a href="https://github.com/pip-webui/pip-webui-guidance/raw/master/doc/images/img-tips.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="https://github.com/pip-webui/pip-webui-guidance/raw/master/doc/images/img-tips.png"/>
 </a>
 
 ### Inspirational quotes
@@ -34,17 +34,18 @@ Todo: Add screenshot with inspiration quote
 
 ### pipGuidance service
 
-**pipGuidance** service provides a convenient method to open guidance dialogs or popups with tips and quotes, using data pulled from the server and filtered for specific page or context.
+**pipGuidance** service provides a convenient method to open guidance dialogs or popups with tips and quotes, 
+using data pulled from the server and filtered for specific page or context.
 
 Todo: Add code snippet that shows how to open dialogs and popups
 
 ## Learn more about the module
 
-- [User's guide](doc/UsersGuide.md)
+- [User's guide](https://github.com/pip-webui/pip-webui-guidance/blob/master/doc/UsersGuide.md)
 - [Online samples](http://webui.pipdevs.com/pip-webui-guidance/index.html)
 - [API reference](http://webui-api.pipdevs.com/pip-webui-guidance/index.html)
-- [Developer's guide](doc/DevelopersGuide.md)
-- [Changelog](CHANGELOG.md)
+- [Developer's guide](https://github.com/pip-webui/pip-webui-guidance/blob/master/doc/DevelopersGuide.md)
+- [Changelog](https://github.com/pip-webui/pip-webui-guidance/blob/master/CHANGELOG.md)
 - [Pip.WebUI project website](http://www.pipwebui.org)
 - [Pip.WebUI project wiki](https://github.com/pip-webui/pip-webui/wiki)
 - [Pip.WebUI discussion forum](https://groups.google.com/forum/#!forum/pip-webui)
