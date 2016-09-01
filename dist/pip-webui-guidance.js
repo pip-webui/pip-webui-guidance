@@ -1,3 +1,20 @@
+/**
+ * @file Registration of all guidance components
+ * @copyright Digital Living Software Corp. 2014-2016
+ */
+
+(function () {
+    'use strict';
+
+    angular.module('pipGuidance', [
+        'pipTips.Service',
+        'pipIntroGuidance.Service',
+        'pipGuidance.Dialog',
+        'pipReleaseIntroDialog'
+    ]);
+
+})(window.angular);
+
 (function(module) {
 try {
   module = angular.module('pipGuidance.Templates');
@@ -159,23 +176,6 @@ module.run(['$templateCache', function($templateCache) {
     '</div>');
 }]);
 })();
-
-/**
- * @file Registration of all guidance components
- * @copyright Digital Living Software Corp. 2014-2016
- */
-
-(function () {
-    'use strict';
-
-    angular.module('pipGuidance', [
-        'pipTips.Service',
-        'pipIntroGuidance.Service',
-        'pipGuidance.Dialog',
-        'pipReleaseIntroDialog'
-    ]);
-
-})(window.angular);
 
 /**
  * @file Guidance dialog
