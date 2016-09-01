@@ -117,13 +117,13 @@
          * @return {Object} Sorted guideline. Result is dependece on 'settings.intro' field. If it is existed than it returns
          * intro guide with 'completed' status.
          */
-        function findIntroReleaseGuide(guides, settings) {
-            var guidesSort;
+        function findIntroReleaseGuide(guides, settings, app) {
+            var guidesSort, app = app || 'pip-life';
 
             if (!settings.intro || !settings.intro.lastId) {
                 // TODO [apidhirnyi] Make chaining for filter and sortBy
                 guidesSort = _.filter(guides, function (guide) {
-                    return guide.type === 'intro' && guide.status === 'completed';
+                    return guide.type === 'intro' && guide.status === 'completed' && guide.app === app;
                 });
 
                 guidesSort = _.sortBy(guidesSort, function (guide) {
@@ -134,7 +134,7 @@
             }
 
             guidesSort = _.filter(guides, function (guide) {
-                return guide.type === 'new release' && guide.status === 'completed';
+                return guide.type === 'new release' && guide.status === 'completed'  && guide.app === app;
             });
 
             guidesSort = _.sortBy(guidesSort, function (guide) {
