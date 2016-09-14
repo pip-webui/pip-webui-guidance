@@ -119,7 +119,7 @@
                     $scope.settings[params.settingsName].lastId = $scope.data.id;
                     $scope.settings[params.settingsName].date = new Date();
 
-                    params.pipSettingsData.saveSettings($scope.settings, params.settingsName);
+                    params.pipDataSettings.saveSettings($scope.settings, params.settingsName);
                 }
 
                 $mdDialog.cancel();

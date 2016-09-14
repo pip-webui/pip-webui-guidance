@@ -70,38 +70,6 @@ try {
   module = angular.module('pipGuidance.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('tips/tip.template.html',
-    '<div ng-if="title" class=\'pip-title p24-flex flex-fixed bp16\'>\n' +
-    '    {{ title | translate }}\n' +
-    '</div>\n' +
-    '\n' +
-    '<div class=\'pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64 pip-scroll\'\n' +
-    '     ng-class="{\'tm24\' : !title }">\n' +
-    '    <div ng-if="image && $mdMedia(\'gt-xs\')" class="pip-pic"></div>\n' +
-    '    <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>\n' +
-    '</div>\n' +
-    '\n' +
-    '<div class="pip-footer lm24-flex rm24-flex position-bottom layout-row layout-align-start-center">\n' +
-    '    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2 flex">\n' +
-    '        {{:: \'MORE_URL\' | translate }}\n' +
-    '    </a>\n' +
-    '    <div  ng-if="!link" class="flex"></div>\n' +
-    '\n' +
-    '    <md-button ng-click=\'onNextClick()\' class="rm0">\n' +
-    '        {{:: \'NEXT\' | translate }}\n' +
-    '    </md-button>\n' +
-    '\n' +
-    '</div>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipGuidance.Templates');
-} catch (e) {
-  module = angular.module('pipGuidance.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('intro_guidance/intro_guidance_dialog.html',
     '<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview layout-column" md-theme="{{theme}}">\n' +
     '    <div ng-if="!$routing" ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"\n' +
@@ -174,6 +142,38 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '</md-dialog>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipGuidance.Templates');
+} catch (e) {
+  module = angular.module('pipGuidance.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('tips/tip.template.html',
+    '<div ng-if="title" class=\'pip-title p24-flex flex-fixed bp16\'>\n' +
+    '    {{ title | translate }}\n' +
+    '</div>\n' +
+    '\n' +
+    '<div class=\'pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64 pip-scroll\'\n' +
+    '     ng-class="{\'tm24\' : !title }">\n' +
+    '    <div ng-if="image && $mdMedia(\'gt-xs\')" class="pip-pic"></div>\n' +
+    '    <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>\n' +
+    '</div>\n' +
+    '\n' +
+    '<div class="pip-footer lm24-flex rm24-flex position-bottom layout-row layout-align-start-center">\n' +
+    '    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2 flex">\n' +
+    '        {{:: \'MORE_URL\' | translate }}\n' +
+    '    </a>\n' +
+    '    <div  ng-if="!link" class="flex"></div>\n' +
+    '\n' +
+    '    <md-button ng-click=\'onNextClick()\' class="rm0">\n' +
+    '        {{:: \'NEXT\' | translate }}\n' +
+    '    </md-button>\n' +
+    '\n' +
+    '</div>');
 }]);
 })();
 
@@ -400,7 +400,7 @@ module.run(['$templateCache', function($templateCache) {
                     $scope.settings[params.settingsName].lastId = $scope.data.id;
                     $scope.settings[params.settingsName].date = new Date();
 
-                    params.pipSettingsData.saveSettings($scope.settings, params.settingsName);
+                    params.pipDataSettings.saveSettings($scope.settings, params.settingsName);
                 }
 
                 $mdDialog.cancel();
@@ -429,7 +429,7 @@ module.run(['$templateCache', function($templateCache) {
      *
      * @requires pipReleaseIntroDialog
      */
-    thisModule.factory('pipGuidance', ['pipReleaseIntroDialog', 'pipSettingsData', 'pipGuidesData', '$rootScope', function (pipReleaseIntroDialog, pipSettingsData, pipGuidesData, $rootScope) {
+    thisModule.factory('pipGuidance', ['pipReleaseIntroDialog', 'pipDataSettings', 'pipDataGuide', '$rootScope', function (pipReleaseIntroDialog, pipDataSettings, pipDataGuide, $rootScope) {
 
         return {
             /** @see showIntroReleaseGuide */
@@ -443,7 +443,7 @@ module.run(['$templateCache', function($templateCache) {
         };
 
         function showReleaseGuidance(filter) {
-            pipGuidesData.readGuides({filter: filter}, function (guides) {
+            pipDataGuide.readGuides({filter: filter}, function (guides) {
                 guides = _.filter(guides, function (guide) {
                     return guide.type = 'new release' && guide.status === 'completed';
                 });
@@ -452,7 +452,7 @@ module.run(['$templateCache', function($templateCache) {
                         guide: guides[0],
                         settings: {},
                         settingsName: 'new release',
-                        pipSettingsData: null,
+                        pipDataSettings: null,
                         admin: true,
                         ln: $rootScope.$language
                     });
@@ -461,7 +461,7 @@ module.run(['$templateCache', function($templateCache) {
         }
 
         function showIntroGuidance(filter) {
-            pipGuidesData.readIntroGuides({filter: filter}, function (guides) {
+            pipDataGuide.readIntroGuides({filter: filter}, function (guides) {
                 guides = _.filter(guides, function (guide) {
                     return guide.type = 'intro' && guide.status === 'completed';
                 });
@@ -470,7 +470,7 @@ module.run(['$templateCache', function($templateCache) {
                         guide: guides[0],
                         settings: {},
                         settingsName: 'intro',
-                        pipSettingsData: null,
+                        pipDataSettings: null,
                         admin: true,
                         ln: $rootScope.$language
                     });
@@ -506,7 +506,7 @@ module.run(['$templateCache', function($templateCache) {
                     guide: guide,
                     settings: settings,
                     settingsName: guide.type === 'intro' ? 'intro' : 'release',
-                    pipSettingsData: pipSettingsData,
+                    pipDataSettings: pipDataSettings,
                     admin: admin,
                     ln: ln
                 });
@@ -585,7 +585,7 @@ module.run(['$templateCache', function($templateCache) {
      * Service provides an interface to manage tips state.
      * The service is available only on run phase.
      */
-    thisModule.factory('pipTips', ['$timeout', '$rootScope', '$pipPopover', 'pipTipsData', 'pipRest', 'pipSettingsData', function ($timeout, $rootScope, $pipPopover, pipTipsData, pipRest, pipSettingsData) {
+    thisModule.factory('pipTips', ['$timeout', '$rootScope', '$pipPopover', 'pipDataTip', 'pipRest', 'pipDataSettings', function ($timeout, $rootScope, $pipPopover, pipDataTip, pipRest, pipDataSettings) {
         var tips;
 
         return {
@@ -759,13 +759,13 @@ module.run(['$templateCache', function($templateCache) {
                     $pipPopover.hide();
                     showTips(tips, ln);
                     settings[topic].tips = new Date();
-                    pipSettingsData.saveSettings(settings, topic);
+                    pipDataSettings.saveSettings(settings, topic);
                 }
             } else if (settings[topic]) {
                 $pipPopover.hide();
                 showTips(tips, ln);
                 settings[topic].tips = new Date();
-                pipSettingsData.saveSettings(settings, topic);
+                pipDataSettings.saveSettings(settings, topic);
             }
         }
 
@@ -786,7 +786,7 @@ module.run(['$templateCache', function($templateCache) {
          */
         function getTips(party, ln, topic, callback) {
 
-            pipTipsData.readTips(
+            pipDataTip.readTips(
                 {item: {}},
                 null,
                 function (result) {

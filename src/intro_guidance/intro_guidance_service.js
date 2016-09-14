@@ -17,7 +17,7 @@
      *
      * @requires pipReleaseIntroDialog
      */
-    thisModule.factory('pipGuidance', function (pipReleaseIntroDialog, pipSettingsData, pipGuidesData, $rootScope) {
+    thisModule.factory('pipGuidance', function (pipReleaseIntroDialog, pipDataSettings, pipDataGuide, $rootScope) {
 
         return {
             /** @see showIntroReleaseGuide */
@@ -31,7 +31,7 @@
         };
 
         function showReleaseGuidance(filter) {
-            pipGuidesData.readGuides({filter: filter}, function (guides) {
+            pipDataGuide.readGuides({filter: filter}, function (guides) {
                 guides = _.filter(guides, function (guide) {
                     return guide.type = 'new release' && guide.status === 'completed';
                 });
@@ -40,7 +40,7 @@
                         guide: guides[0],
                         settings: {},
                         settingsName: 'new release',
-                        pipSettingsData: null,
+                        pipDataSettings: null,
                         admin: true,
                         ln: $rootScope.$language
                     });
@@ -49,7 +49,7 @@
         }
 
         function showIntroGuidance(filter) {
-            pipGuidesData.readIntroGuides({filter: filter}, function (guides) {
+            pipDataGuide.readIntroGuides({filter: filter}, function (guides) {
                 guides = _.filter(guides, function (guide) {
                     return guide.type = 'intro' && guide.status === 'completed';
                 });
@@ -58,7 +58,7 @@
                         guide: guides[0],
                         settings: {},
                         settingsName: 'intro',
-                        pipSettingsData: null,
+                        pipDataSettings: null,
                         admin: true,
                         ln: $rootScope.$language
                     });
@@ -94,7 +94,7 @@
                     guide: guide,
                     settings: settings,
                     settingsName: guide.type === 'intro' ? 'intro' : 'release',
-                    pipSettingsData: pipSettingsData,
+                    pipDataSettings: pipDataSettings,
                     admin: admin,
                     ln: ln
                 });

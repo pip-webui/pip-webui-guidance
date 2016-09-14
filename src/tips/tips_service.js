@@ -18,7 +18,7 @@
      * Service provides an interface to manage tips state.
      * The service is available only on run phase.
      */
-    thisModule.factory('pipTips', function ($timeout, $rootScope, $pipPopover, pipTipsData, pipRest, pipSettingsData) {
+    thisModule.factory('pipTips', function ($timeout, $rootScope, $pipPopover, pipDataTip, pipRest, pipDataSettings) {
         var tips;
 
         return {
@@ -192,13 +192,13 @@
                     $pipPopover.hide();
                     showTips(tips, ln);
                     settings[topic].tips = new Date();
-                    pipSettingsData.saveSettings(settings, topic);
+                    pipDataSettings.saveSettings(settings, topic);
                 }
             } else if (settings[topic]) {
                 $pipPopover.hide();
                 showTips(tips, ln);
                 settings[topic].tips = new Date();
-                pipSettingsData.saveSettings(settings, topic);
+                pipDataSettings.saveSettings(settings, topic);
             }
         }
 
@@ -219,7 +219,7 @@
          */
         function getTips(party, ln, topic, callback) {
 
-            pipTipsData.readTips(
+            pipDataTip.readTips(
                 {item: {}},
                 null,
                 function (result) {

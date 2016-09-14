@@ -6,13 +6,13 @@
 (function (angular) {
     'use strict';
 
-    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipEntry', 'pipSideNav', 'pipGuidesData',
-        'pipAppBar', 'pipGuidance', 'pipTipsData', 'pipSettingsData'  ]);
+    var thisModule = angular.module('pipSampleConfig', ['pipRest.State', 'pipRest', 'pipData', 'pipEntry', 'pipSideNav', 'pipDataGuide',
+        'pipAppBar', 'pipGuidance', 'pipDataTip', 'pipDataSettings'  ]);
 
     // Configure application services before start
     thisModule.config(
-        function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipRestProvider, pipSideNavProvider, 
-                  pipGuidesDataProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
+        function ($mdThemingProvider, $urlRouterProvider, pipAuthStateProvider, pipDataConfigProvider, pipSideNavProvider, 
+                  pipDataGuideProvider, pipAppBarProvider, pipEntryProvider, $mdIconProvider) {
 
             var links = [
                     { title: 'Basic controls', href: '/pip-webui-controls/index.html'},
@@ -43,7 +43,7 @@
 
             // Configure REST API
             //pipRestProvider.version('1.0');
-            pipRestProvider.serverUrl('http://alpha.pipservices.net');
+            pipDataConfigProvider.serverUrl('http://alpha.pipservices.net');
 
             // Configure entry pages
             //pipEntryProvider.fixedServerUrl('http://alpha.pipservices.net');
