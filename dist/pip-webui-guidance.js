@@ -70,6 +70,38 @@ try {
   module = angular.module('pipGuidance.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('tips/tip.template.html',
+    '<div ng-if="title" class=\'pip-title p24-flex flex-fixed bp16\'>\n' +
+    '    {{ title | translate }}\n' +
+    '</div>\n' +
+    '\n' +
+    '<div class=\'pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64 pip-scroll\'\n' +
+    '     ng-class="{\'tm24\' : !title }">\n' +
+    '    <div ng-if="image && $mdMedia(\'gt-xs\')" class="pip-pic"></div>\n' +
+    '    <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>\n' +
+    '</div>\n' +
+    '\n' +
+    '<div class="pip-footer lm24-flex rm24-flex position-bottom layout-row layout-align-start-center">\n' +
+    '    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2 flex">\n' +
+    '        {{:: \'MORE_URL\' | translate }}\n' +
+    '    </a>\n' +
+    '    <div  ng-if="!link" class="flex"></div>\n' +
+    '\n' +
+    '    <md-button ng-click=\'onNextClick()\' class="rm0">\n' +
+    '        {{:: \'NEXT\' | translate }}\n' +
+    '    </md-button>\n' +
+    '\n' +
+    '</div>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipGuidance.Templates');
+} catch (e) {
+  module = angular.module('pipGuidance.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('intro_guidance/intro_guidance_dialog.html',
     '<md-dialog class="pip-dialog pip-guidance-dialog pip-guide-preview layout-column" md-theme="{{theme}}">\n' +
     '    <div ng-if="!$routing" ng-swipe-left="onNextPage()" ng-swipe-right="onBackPage()"\n' +
@@ -144,140 +176,6 @@ module.run(['$templateCache', function($templateCache) {
     '');
 }]);
 })();
-
-(function(module) {
-try {
-  module = angular.module('pipGuidance.Templates');
-} catch (e) {
-  module = angular.module('pipGuidance.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('tips/tip.template.html',
-    '<div ng-if="title" class=\'pip-title p24-flex flex-fixed bp16\'>\n' +
-    '    {{ title | translate }}\n' +
-    '</div>\n' +
-    '\n' +
-    '<div class=\'pip-content pip-popover-content lp24-flex rp24-flex text-body1 bm64 pip-scroll\'\n' +
-    '     ng-class="{\'tm24\' : !title }">\n' +
-    '    <div ng-if="image && $mdMedia(\'gt-xs\')" class="pip-pic"></div>\n' +
-    '    <pip-markdown pip-text="content" pip-rebind="true"></pip-markdown>\n' +
-    '</div>\n' +
-    '\n' +
-    '<div class="pip-footer lm24-flex rm24-flex position-bottom layout-row layout-align-start-center">\n' +
-    '    <a ng-if="link" target="_blank" href="{{ link }}" class="text-body2 flex">\n' +
-    '        {{:: \'MORE_URL\' | translate }}\n' +
-    '    </a>\n' +
-    '    <div  ng-if="!link" class="flex"></div>\n' +
-    '\n' +
-    '    <md-button ng-click=\'onNextClick()\' class="rm0">\n' +
-    '        {{:: \'NEXT\' | translate }}\n' +
-    '    </md-button>\n' +
-    '\n' +
-    '</div>');
-}]);
-})();
-
-/**
- * @file Guidance dialog
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-(function (angular) {
-    'use strict';
-
-    var thisModule = angular.module('pipGuidance.Dialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            GUIDANCE_TITLE: 'What should you do here?',
-            GUIDANCE_ACTION: 'Do it now!',
-            GUIDANCE_DO_NOT_SHOW: "Don't show it again"
-        });
-        pipTranslateProvider.translations('ru', {
-            GUIDANCE_TITLE: 'Что здесь делать?',
-            GUIDANCE_ACTION: 'Сделать это сейчас!',
-            GUIDANCE_DO_NOT_SHOW: 'Не показывать это снова'
-        });
-    }]);
-
-    /**
-     * @ngdoc service
-     * @name pipGuidance.Dialog:pipGuidanceDialog
-     *
-     * @description
-     * Reproduced API to show guidance dialog stretched out on a whole screen.
-     * It is included a navigation and allows users to go back through guide.
-     */
-    thisModule.factory('pipGuidanceDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                /**
-                 * @ngdoc method
-                 * @methodOf pipGuidance.Dialog:pipGuidanceDialog
-                 * @name pipGuidance.Dialog.pipGuidanceDialog:show
-                 *
-                 * @description
-                 * Shows guidance panel. Shown guidance can be close by click on backdrop space. Into callback function is
-                 * passed nothing data.
-                 *
-                 * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/guidance/guidance_dialog.js#L50 View source}
-                 *
-                 * @param {Object} params   Options for dialog panel.
-                 * @param {Function=} successCallback   Callback function is invoked on success dialog close.
-                 * @param {Function=} cancelCallback    Callback function is invoked on error event.
-                 */
-                show: function (params, successCallback, cancelCallback) {
-                    $mdDialog.show({
-                        targetEvent: params.event,
-                        templateUrl: 'guidance/guidance_dialog.html',
-                        controller: 'pipGuidanceDialogController',
-                        locals: { params: params },
-                        clickOutsideToClose: true
-                    })
-                        .then(function () {
-                            if (successCallback) {
-                                successCallback();
-                            }
-                        }, function () {
-                            if (cancelCallback) {
-                                cancelCallback();
-                            }
-                        });
-                }
-            };
-        }]
-    );
-
-    thisModule.controller('pipGuidanceDialogController',
-        ['$scope', '$rootScope', '$mdDialog', 'params', function ($scope, $rootScope, $mdDialog, params) {
-            $scope.theme = $rootScope.$theme;
-            $scope.title = params.title || 'GUIDANCE_TITLE';
-
-            $scope.imageUrl = params.imageUrl || '';
-            $scope.imageWidth = params.imageWidth || '100%';
-            $scope.imageHeight = params.imageHeight || '150px';
-
-            $scope.content = params.content;
-            $scope.action = params.action || 'GUIDANCE_ACTION';
-            $scope.hideToggle = params.hideToggle;
-            $scope.showHideToggle = params.hideToggleCallback != null;
-
-            $scope.onCancel = function () {
-                $mdDialog.cancel();
-            };
-
-            $scope.onAction = function () {
-                $mdDialog.hide();
-            };
-
-            $scope.onHideToggle = function () {
-                if (params.hideToggleCallback) {
-                    params.hideToggleCallback($scope.hideToggle);
-                }
-            };
-        }]);
-
-})(window.angular);
 
 /**
  * @file Tips service
@@ -517,6 +415,108 @@ module.run(['$templateCache', function($templateCache) {
         }
 
     }]);
+
+})(window.angular);
+
+/**
+ * @file Guidance dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+(function (angular) {
+    'use strict';
+
+    var thisModule = angular.module('pipGuidance.Dialog', ['ngMaterial', 'pipTranslate', 'pipGuidance.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            GUIDANCE_TITLE: 'What should you do here?',
+            GUIDANCE_ACTION: 'Do it now!',
+            GUIDANCE_DO_NOT_SHOW: "Don't show it again"
+        });
+        pipTranslateProvider.translations('ru', {
+            GUIDANCE_TITLE: 'Что здесь делать?',
+            GUIDANCE_ACTION: 'Сделать это сейчас!',
+            GUIDANCE_DO_NOT_SHOW: 'Не показывать это снова'
+        });
+    }]);
+
+    /**
+     * @ngdoc service
+     * @name pipGuidance.Dialog:pipGuidanceDialog
+     *
+     * @description
+     * Reproduced API to show guidance dialog stretched out on a whole screen.
+     * It is included a navigation and allows users to go back through guide.
+     */
+    thisModule.factory('pipGuidanceDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                /**
+                 * @ngdoc method
+                 * @methodOf pipGuidance.Dialog:pipGuidanceDialog
+                 * @name pipGuidance.Dialog.pipGuidanceDialog:show
+                 *
+                 * @description
+                 * Shows guidance panel. Shown guidance can be close by click on backdrop space. Into callback function is
+                 * passed nothing data.
+                 *
+                 * {@link https://github.com/pip-webui/pip-webui-guidance/blob/master/src/guidance/guidance_dialog.js#L50 View source}
+                 *
+                 * @param {Object} params   Options for dialog panel.
+                 * @param {Function=} successCallback   Callback function is invoked on success dialog close.
+                 * @param {Function=} cancelCallback    Callback function is invoked on error event.
+                 */
+                show: function (params, successCallback, cancelCallback) {
+                    $mdDialog.show({
+                        targetEvent: params.event,
+                        templateUrl: 'guidance/guidance_dialog.html',
+                        controller: 'pipGuidanceDialogController',
+                        locals: { params: params },
+                        clickOutsideToClose: true
+                    })
+                        .then(function () {
+                            if (successCallback) {
+                                successCallback();
+                            }
+                        }, function () {
+                            if (cancelCallback) {
+                                cancelCallback();
+                            }
+                        });
+                }
+            };
+        }]
+    );
+
+    thisModule.controller('pipGuidanceDialogController',
+        ['$scope', '$rootScope', '$mdDialog', 'params', function ($scope, $rootScope, $mdDialog, params) {
+            $scope.theme = $rootScope.$theme;
+            $scope.title = params.title || 'GUIDANCE_TITLE';
+
+            $scope.imageUrl = params.imageUrl || '';
+            $scope.imageWidth = params.imageWidth || '100%';
+            $scope.imageHeight = params.imageHeight || '150px';
+
+            $scope.content = params.content;
+            $scope.action = params.action || 'GUIDANCE_ACTION';
+            $scope.hideToggle = params.hideToggle;
+            $scope.showHideToggle = params.hideToggleCallback != null;
+
+            $scope.onCancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.onAction = function () {
+                $mdDialog.hide();
+            };
+
+            $scope.onHideToggle = function () {
+                if (params.hideToggleCallback) {
+                    params.hideToggleCallback($scope.hideToggle);
+                }
+            };
+        }]);
 
 })(window.angular);
 
