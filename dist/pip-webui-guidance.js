@@ -397,6 +397,7 @@ module.run(['$templateCache', function($templateCache) {
 
             $scope.onClose = function () {
                 if (!$scope.admin) {
+                    $scope.settings[params.app][params.settingsName] = $scope.settings[params.app][params.settingsName] || {};
                     $scope.settings[params.app][params.settingsName].lastId = $scope.data.id;
                     $scope.settings[params.app][params.settingsName].date = new Date();
 
