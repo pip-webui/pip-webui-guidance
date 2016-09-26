@@ -78,7 +78,7 @@
 
             var guide = params.guide;
 
-            if (!$scope.admin && $scope.settings[params.settingsName] && $scope.settings[params.settingsName].lastId) {
+            if (!$scope.admin && $scope.settings[params.app][params.settingsName] && $scope.settings[params.app][params.settingsName].lastId) {
                 params.settingsName = 'release';
             }
 
@@ -116,10 +116,10 @@
 
             $scope.onClose = function () {
                 if (!$scope.admin) {
-                    $scope.settings[params.settingsName].lastId = $scope.data.id;
-                    $scope.settings[params.settingsName].date = new Date();
+                    $scope.settings[params.app][params.settingsName].lastId = $scope.data.id;
+                    $scope.settings[params.app][params.settingsName].date = new Date();
 
-                    params.pipDataSettings.saveSettings($scope.settings, params.settingsName);
+                    params.pipDataSettings.saveSettings($scope.settings, params.app);
                 }
 
                 $mdDialog.cancel();

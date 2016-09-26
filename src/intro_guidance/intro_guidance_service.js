@@ -88,7 +88,7 @@
          *     pipGuidance.showIntroReleaseGuide($scope.guide, $scope.settings, null, 'en', $rootScope.$party, $rootScope.$user);
          * </pre>
          */
-        function showIntroReleaseGuide(guide, settings, admin, ln, party, user) {
+        function showIntroReleaseGuide(guide, settings, admin, ln, party, user, app) {
             if (guide && party.id === user.id) {
                 pipReleaseIntroDialog.show({
                     guide: guide,
@@ -96,7 +96,8 @@
                     settingsName: guide.type === 'intro' ? 'intro' : 'release',
                     pipDataSettings: pipDataSettings,
                     admin: admin,
-                    ln: ln
+                    ln: ln,
+                    app: app || 'pip-life' 
                 });
             }
         }
@@ -119,8 +120,8 @@
          */
         function findIntroReleaseGuide(guides, settings, app) {
             var guidesSort, app = app || 'pip-life';
-
-            if (!settings.intro || !settings.intro.lastId) {
+            
+            if (!settings[app] || !settings[app].intro || !settings[app].intro.lastId) {
                 // TODO [apidhirnyi] Make chaining for filter and sortBy
                 guidesSort = _.filter(guides, function (guide) {
                     return guide.type === 'intro' && guide.status === 'completed' && guide.app === app;
@@ -141,8 +142,8 @@
                 return -new Date(guide.created).getTime();
             });
 
-            if (!settings.intro.date || (guidesSort.length > 0 &&
-                new Date(settings.intro.date) < new Date(guidesSort[0].created) &&
+            if (!settings[app].intro.date || (guidesSort.length > 0 &&
+                new Date(settings[app].intro.date) < new Date(guidesSort[0].created) &&
                 guidesSort[0].id != settings.release.lastId)) {
                 return guidesSort[0];
             }
